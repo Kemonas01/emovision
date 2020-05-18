@@ -1,0 +1,51 @@
+.title{
+    font-family: Century Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+
+    color: #FFFFFF;
+
+    width: 327px;
+    height: 118px;
+}
+.profile{
+    position: absolute;
+    width: 289px;
+    height: 68px;
+    left: 43px;
+    top: 566px;
+
+    background: #3C5094;
+    border-radius: 30px;
+}
+.profileText{
+    position: absolute;
+    width: 196px;
+    height: 40px;
+    left: 90px;
+    top: 585px;
+
+    font-family: Century Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+.test{
+    position: absolute;
+    width: 289px;
+    height: 68px;
+    left: 43px;
+    top: 642px;
+
+    background: #3C5094;
+    border-radius: 30px;
+}

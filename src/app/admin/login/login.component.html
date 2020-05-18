@@ -1,0 +1,48 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3>Connexion</h3>
+      <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Adresse mail" #userName required>
+      </div>
+
+      <div class="formGroup">
+        <input type="password" class="formControl" placeholder="Mot de passe" #userPassword required>
+      </div>
+
+      <!-- Calling SignIn Api from AuthService -->
+      <div class="formGroup">
+        <input type="button" class="btn btnPrimary" value="Connexion" (click)="authService.SignIn(userName.value, userPassword.value)">
+      </div>
+
+      <div class="formGroup">
+        <span class="or"><span class="orInner">ou</span></span>
+      </div>
+
+      <!-- Calling GoogleAuth Api from AuthService -->
+      <div class="formGroup">
+        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          connexion avec Google
+        </button>
+      </div>
+
+      <div class="formGroup">
+        <button type="button" class="btn googleBtn" (click)="authService.FacebookAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          connexion avec Facebook
+        </button>
+      </div>
+
+      <div class="forgotPassword">
+        <span routerLink="/forgot-password">mot de passe oublié?</span>
+      </div>
+    </div>
+
+    <div class="redirectToLogin">
+      <span>Pas encore de compte?<span class="redirect" routerLink="/register">S'enregistrer</span></span>
+    </div>
+
+  </div>
+</div>

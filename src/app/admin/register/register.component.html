@@ -1,0 +1,45 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>S'enregistrer</h3>
+  
+        <div class="formGroup">
+          <input type="email" class="formControl" placeholder="adresse email" #userEmail required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="mot de passe" #userPwd required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="button" class="btn btnPrimary" value="s'enregistrer" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+        </div>
+  
+        <div class="formGroup">
+          <span class="or"><span class="orInner">ou</span></span>
+        </div>
+  
+        <!-- Continue with Google -->
+        <div class="formGroup">
+          <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+            <i class="fab fa-google-plus-g"></i>
+            avec Google
+          </button>
+        </div>
+  
+        <!-- Continue with Facebook -->
+        <div class="formGroup">
+          <button type="button" class="btn facebookBtn" (click)="authService.FacebookAuth()">
+            <i class="fab fa-facebook"></i>
+            avec Facebook
+          </button>
+        </div>
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Déjà un compte? <span class="redirect" routerLink="/login">connexion</span></span>
+      </div>
+    </div>
+  
+  </div>
