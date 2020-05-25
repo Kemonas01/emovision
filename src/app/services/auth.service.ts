@@ -4,25 +4,32 @@ import { User } from '../interfaces/user';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
-import { async } from '@angular/core/testing';
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class AuthService {
   userData: any; // Save logged in user data
+  userId: string;
+  utiliteurs: any = null;
+
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+
   ) {
-    /* Saving user data in localstorage when
-    logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
+        this.userId = user.uid;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -46,11 +53,16 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email, password) {
+  SignUp(email, password, userNom, dateNais) {
+    this.getUserList();
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign
-        up and returns promise */
+        console.log(this.userId);
+        console.log(dateNais);
+        const test = {
+          nom: userNom
+        };
+        this.createUtilisateur(test);
         this.SendVerificationMail();
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -62,7 +74,7 @@ export class AuthService {
   async SendVerificationMail() {
     await firebase.auth().currentUser.sendEmailVerification();
     this.router.navigate(['verify-email']);
-}
+  }
 
   // Reset Forggot password
   ForgotPassword(passwordResetEmail) {
@@ -84,28 +96,18 @@ export class AuthService {
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
+
   // Sign in with Facebook
   FacebookAuth(){
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth
-      .signInWithPopup(provider)
-      .then(result => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      }, err => {
-        console.log(err);
-        reject(err);
-      });
-    });
- }
+    return this.AuthLogin(new auth.FacebookAuthProvider());
+  }
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
+       console.log(this.userId);
+       console.log('test');
        this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
@@ -138,4 +140,19 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
+
+  // Get all list of user and return the current user
+  getUserList(): AngularFireList<any[]>{
+    if (!this.userId){
+      return;
+    }
+    this.utiliteurs = firebase.database().ref(`utilisateurs/${this.userId}`);
+    return this.utiliteurs;
+  }
+
+  // Create user Information on database
+  createUtilisateur(test){
+    this.utiliteurs.push(test);
+  }
+
 }

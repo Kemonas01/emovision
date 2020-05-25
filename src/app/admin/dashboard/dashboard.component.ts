@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged(
       (userSession) => {
-        console.log('userSession', userSession);
+
       }
     );
   }

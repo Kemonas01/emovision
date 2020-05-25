@@ -14,6 +14,16 @@ import { VerifyEmailComponent } from './admin/verify-email/verify-email.componen
 import { AuthService } from './services/auth.service';
 import { EmotionComponent } from './emotion/emotion.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
+
+
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCIcI535870dRbWe7G_NN9vAxamuY9Wals',
@@ -42,9 +52,17 @@ const firebaseConfig = {
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
