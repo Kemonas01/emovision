@@ -1,0 +1,51 @@
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+.mat-toolbar.mat-primary {
+    background-color: #fff;
+}
+.container .content .center{
+    width: 100%; 
+    text-align: center;
+    font-size: 15px;
+}
+.header{
+    width: 100%; 
+    text-align: center;
+    font-size: 20px;
+}
+.fill {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../../assets/images/banner_test_2.png');
+}
+.container .content .logo {
+    margin: 2.5rem;
+    text-align: center;
+    font-size: 24px;
+    color: #3f51b5;
+}
+.container .content .logo .mat-icon {
+    height: 160px !important;
+    width: 160px !important;
+    font-size: 160px !important;
+}
+.container .media-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.container .media-footer .time-slider {
+    width: 100% !important;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.container .media-footer .media-action-bar {
+    width: 100%;
+    padding: 2.5rem;
+    justify-content: center;
+}
+.container .media-footer .media-action-bar .mat-icon {
+    height: 48px !important;
+    width: 48px !important;
+    font-size: 48px !important;
+}

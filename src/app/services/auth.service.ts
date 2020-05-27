@@ -29,7 +29,6 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        this.userId = user.uid;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -53,20 +52,21 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email, password, userNom, dateNais) {
-    this.getUserList();
+  SignUp(email, password, userPrenom, userNom, userDateNaissance, userGenre, userConfidentialite) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(this.userId);
-        console.log(dateNais);
+        this.userId = result.user.uid;
         const test = {
-          nom: userNom
+          nom: userNom,
+          prenom: userPrenom,
+          dateNaissance: userDateNaissance,
+          genre: userGenre,
+          confidentialite: userConfidentialite,
         };
         this.createUtilisateur(test);
         this.SendVerificationMail();
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message);
       });
   }
 
@@ -152,7 +152,7 @@ export class AuthService {
 
   // Create user Information on database
   createUtilisateur(test){
-    this.utiliteurs.push(test);
+    firebase.database().ref(`utilisateurs/${this.userId}`).set(test);
   }
 
 }
