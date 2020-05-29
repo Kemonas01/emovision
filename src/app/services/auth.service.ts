@@ -29,6 +29,7 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
+        this.userId = user.uid;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -142,12 +143,21 @@ export class AuthService {
   }
 
   // Get all list of user and return the current user
-  getUserList(): AngularFireList<any[]>{
-    if (!this.userId){
-      return;
-    }
-    this.utiliteurs = firebase.database().ref(`utilisateurs/${this.userId}`);
-    return this.utiliteurs;
+  getUserList(){
+    const test = JSON.parse(localStorage.getItem('user')).uid;
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/utilisateurs/' + test).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }
+        ).catch(
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
 
   // Create user Information on database

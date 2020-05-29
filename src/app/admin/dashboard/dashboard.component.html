@@ -6,8 +6,8 @@
       <div class="logo">
       </div>
     <mat-list color="primary">
-      <p class="header">
-        Profile
+      <p class="header" *ngIf="user">
+        Bienvenue sur votre profil <strong>{{user.prenom}}</strong>
       </p>
       <mat-list-item>
         <mat-list-item>

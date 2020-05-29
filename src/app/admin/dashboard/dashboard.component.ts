@@ -10,13 +10,18 @@ import * as firebase from 'firebase';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  user: any;
   constructor(public authService: AuthService) {
    }
 
   ngOnInit(): void {
-    firebase.auth().onAuthStateChanged(
-      (userSession) => {
-
+    this.authService.getUserList().then(
+      (user) => {
+        this.user = user;
+      }
+    ).catch(
+      (error) => {
+        console.error(error);
       }
     );
   }
