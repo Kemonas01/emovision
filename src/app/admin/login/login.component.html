@@ -1,48 +1,40 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-
-    <div class="authBlock">
-      <h3>Connexion</h3>
-      <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Adresse mail" #userName required>
+<div class="container">
+  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
+    <div class="fill"></div>
+  </mat-toolbar>
+  <div class="content">
+      <div class="logo">
       </div>
+    <mat-list color="primary">
+      <p class="header">
+        Connexion
+      </p>
+      <mat-list-item>
+        <p class="center">
+          <mat-form-field appearance="legacy">
+            <mat-label>Adresse mail</mat-label>
+            <input matInput placeholder="Prénom" #mail required>
+            <mat-icon matSuffix>mail_outline</mat-icon>
+          </mat-form-field>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="center">
+          <mat-form-field appearance="legacy">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" #mdp required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="center">
+          <button mat-raised-button color="primary" (click)="authService.SignIn(mail.value, mdp.value)">Connexion</button>
+        </p>
+      </mat-list-item>
 
-      <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Mot de passe" #userPassword required>
-      </div>
-
-      <!-- Calling SignIn Api from AuthService -->
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Connexion" (click)="authService.SignIn(userName.value, userPassword.value)">
-      </div>
-
-      <div class="formGroup">
-        <span class="or"><span class="orInner">ou</span></span>
-      </div>
-
-      <!-- Calling GoogleAuth Api from AuthService -->
-      <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          connexion avec Google
-        </button>
-      </div>
-
-      <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.FacebookAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          connexion avec Facebook
-        </button>
-      </div>
-
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">mot de passe oublié?</span>
-      </div>
-    </div>
-
-    <div class="redirectToLogin">
-      <span>Pas encore de compte?<span class="redirect" routerLink="/register">S'enregistrer</span></span>
-    </div>
-
+    </mat-list>
   </div>
+
 </div>

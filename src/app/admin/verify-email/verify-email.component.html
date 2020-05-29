@@ -1,27 +1,36 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-  
-      <div class="authBlock">
-        <h3>Merci de votre inscription</h3>
-  
-        <div class="formGroup" *ngIf="authService.userData as user">
-          <p class="text-center">Nous avons envoyé un mail à l'adresse suivante: <strong>{{user.email}}</strong>.</p>
-          <p class="text-center">Veuillez vérifier votre e-mail et cliquez sur le lien pour verfier votre adresse e-mail.</p>
-        </div>
+<div class="container">
+  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
+    <div class="fill"></div>
+  </mat-toolbar>
+  <div class="content">
+      <div class="logo">
+      </div>
+    <mat-list color="primary">
+      <p class="header">
+        Merci de votre inscription
+      </p>
+      <mat-list-item *ngIf="authService.userData as user">
+        <p class="center" >
+            Nous avons envoyé un mail à l'adresse suivante: <strong>{{user.email}}</strong>.
+        </p>
         
-        <!-- Calling SendVerificationMail() method using authService Api -->
-        <div class="formGroup">
-          <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
-            <i class="fas fa-redo-alt"></i>
-            Renvoyer un mail de confirmation
-          </button>
-        </div>
-  
-      </div>
-  
-      <div class="redirectToLogin">
-        <span>Retourner sur?<span class="redirect" routerLink="/sign-in"> login</span></span>
-      </div>
-  
-    </div>
+      </mat-list-item>
+      <mat-list-item *ngIf="authService.userData as user">
+        <p class="center">
+          Veuillez vérifier votre e-mail et cliquez sur le lien pour vérifier votre adresse e-mail.
+        </p>
+      </mat-list-item>
+      <mat-list-item *ngIf="authService.userData as user">
+        <p class="center">
+          <button mat-raised-button color="accent" (click)="authService.SendVerificationMail()">Renvoyer un mail de confirmation</button>
+        </p>
+      </mat-list-item>
+      <mat-list-item *ngIf="authService.userData as user">
+        <p class="center">
+          <span>Retourner sur? <strong><span routerLink="/login">connexion</span></strong></span>
+        </p>
+      </mat-list-item>
+    </mat-list>
   </div>
+
+</div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 80px !important;" color="primary">
+  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
     <div class="fill"></div>
   </mat-toolbar>
   <div class="content">
@@ -7,82 +7,15 @@
       </div>
     <mat-list color="primary">
       <p class="header">
-        Inscription
+        Profile
       </p>
       <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Prénom</mat-label>
-            <input matInput placeholder="Prénom">
-            <mat-icon matSuffix>face</mat-icon>
-          </mat-form-field>
-        </p>
+        <mat-list-item>
+          <p class="center">
+            <button mat-raised-button color="primary" (click)="authService.SignOut()">Déconnexion</button>
+          </p>
+        </mat-list-item>
       </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="Nom">
-            <mat-icon matSuffix>face</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Date de naissance</mat-label>
-            <input matInput [matDatepicker]="picker" #dateNais>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field>
-            <mat-label>Genre</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let genre of genres" [value]="genre.value">
-                {{genre.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-icon matSuffix>accessibility</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field class="example-full-width" appearance="legacy">
-            <mat-label>Email</mat-label>
-            <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                   placeholder="Ex: pat@example.com">
-            <mat-icon matSuffix>mail_outline</mat-icon>
-            <mat-hint></mat-hint>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Veuillez entrer une adresse mail valide
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              l'adresse mail est <strong>requise</strong>
-            </mat-error>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <button mat-raised-button color="primary">S'enregistrer</button>
-        </p>
-      </mat-list-item>
-
     </mat-list>
   </div>
 
