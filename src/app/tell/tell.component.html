@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+          <mat-list-item>
+            <p class="center">
+                <mat-form-field>
+                    <mat-label>Autosize textarea</mat-label>
+                    <textarea matInput
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="5"
+                              cdkAutosizeMaxRows="5"
+                              value = {{valueText}}
+                              #test></textarea>
+                  </mat-form-field>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center" *ngIf="!modification">
+                <button mat-raised-button color="accent" (click)="onSubmit(test.value)">Je raconte</button>
+            </p>
+            <p class="center" *ngIf="modification">
+              <button mat-raised-button color="accent" (click)="onSubmit(test.value)">Modifier et valider</button>
+          </p>
+          </mat-list-item>
+      </mat-list>
+    </div>
+</div>

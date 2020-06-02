@@ -39,12 +39,11 @@ export class RegisterComponent implements OnInit {
   genres: Genre[] = [
     {value: 'H', viewValue: 'Homme'},
     {value: 'F', viewValue: 'Femme'},
-    {value: 'none', viewValue: 'Je ne souhaite pas précisé'}
+    {value: 'null', viewValue: 'Je ne souhaite pas préciser'}
   ];
 
   ngOnInit() {
     this.initUtilisateursForm();
-    this.authService.getUserList();
   }
 
   initUtilisateursForm(){

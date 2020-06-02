@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+        <mat-list-item>
+            <p class="center">
+                Ressentez l’impact que cette situation émotionnelle a dans votre corps
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center">
+                <mat-toolbar>
+                    <mat-toolbar-row class="media-action-bar">
+                        <button mat-button (click)="prev()">
+                            <mat-icon mat-list-icon>skip_previous</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="!lunch" (click)="start(track[0])">
+                            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="!isPlaying && lunch" (click)="togglePlayer(false)">
+                            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="isPlaying">
+                            <mat-icon mat-list-icon  (click)="togglePlayer(true)">pause</mat-icon>
+                        </button>
+                        <button  mat-button >
+                            <mat-icon mat-list-icon (click)="stop()">stop</mat-icon>
+                        </button>
+                    </mat-toolbar-row>
+                  </mat-toolbar>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center" >
+                <button  mat-raised-button color="accent" (click)="openModal()">
+                    Suivant
+                </button>
+            </p>
+          </mat-list-item>
+      </mat-list>
+      
+    </div>
+</div>

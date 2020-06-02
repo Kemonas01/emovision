@@ -7,12 +7,20 @@
       </div>
     <mat-list color="primary">
       <p class="header" *ngIf="user">
-        Bienvenue sur votre profil <strong>{{user.prenom}}</strong>
+        Bienvenue sur votre profile <strong>{{user.prenom}}</strong>
+      </p>
+      <p class="header" *ngIf="!user">
+        Vous êtes actuellement connecté(e) en mode <strong>anonyme</strong>
       </p>
       <mat-list-item>
         <mat-list-item>
           <p class="center">
             <button mat-raised-button color="primary" (click)="authService.SignOut()">Déconnexion</button>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p class="center">
+            <button mat-raised-button color="primary" (click)="authService.createHistorique()">test</button>
           </p>
         </mat-list-item>
       </mat-list-item>

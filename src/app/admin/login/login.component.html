@@ -33,6 +33,11 @@
           <button mat-raised-button color="primary" (click)="authService.SignIn(mail.value, mdp.value)">Connexion</button>
         </p>
       </mat-list-item>
+      <mat-list-item>
+        <p class="center">
+          <button mat-raised-button color="primary" (click)="authService.AnonymousAuth()">Anonyme</button>
+        </p>
+      </mat-list-item>
 
     </mat-list>
   </div>

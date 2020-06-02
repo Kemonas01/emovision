@@ -17,6 +17,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { PerceptionsComponent } from './perceptions/perceptions.component';
+import { TellComponent } from './tell/tell.component';
+import { AudioComponent, AudioDialogComponent } from './audio/audio.component';
+
 
 
 
@@ -43,6 +47,10 @@ const firebaseConfig = {
     VerifyEmailComponent,
     EmotionComponent,
     DashboardComponent,
+    PerceptionsComponent,
+    TellComponent,
+    AudioComponent,
+    AudioDialogComponent,
   ],
   imports: [
     BrowserModule,

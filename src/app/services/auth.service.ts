@@ -16,7 +16,7 @@ import * as firebase from 'firebase';
 export class AuthService {
   userData: any; // Save logged in user data
   userId: string;
-  utiliteurs: any = null;
+  utilisateurs: any = null;
 
 
   constructor(
@@ -71,6 +71,14 @@ export class AuthService {
       });
   }
 
+  AnonymousAuth(){
+    return firebase.auth().signInAnonymously()
+    .then((result) => {
+      this.userId = result.user.uid;
+      console.log(this.userId);
+    });
+  }
+
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     await firebase.auth().currentUser.sendEmailVerification();
@@ -107,8 +115,6 @@ export class AuthService {
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
-       console.log(this.userId);
-       console.log('test');
        this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
@@ -138,11 +144,12 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('historique');
       this.router.navigate(['login']);
     });
   }
 
-  // Get all list of user and return the current user
+  // Get all list of user and return the current user data
   getUserList(){
     const test = JSON.parse(localStorage.getItem('user')).uid;
     return new Promise(
@@ -163,6 +170,10 @@ export class AuthService {
   // Create user Information on database
   createUtilisateur(test){
     firebase.database().ref(`utilisateurs/${this.userId}`).set(test);
+  }
+
+  createHistorique(){
+    firebase.database().ref(`utilisateurs/kmYdrxs9odhcrpxn1blP1mqHLiB3`);
   }
 
 }
