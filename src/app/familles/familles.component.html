@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+          <p class="center">
+            <mat-list-item *ngFor="let emotion of emotions; let i = index">
+                <h4 mat-line [routerLink]="['/emotions', i]">{{ emotion.libelle }}</h4>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+          </p>
+        
+      </mat-list>
+    </div>
+</div>

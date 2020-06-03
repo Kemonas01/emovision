@@ -1,1 +1,65 @@
-<p>emotion works!</p>
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+        <h1 class="center"><strong> {{ title }} </strong></h1>
+        <mat-divider></mat-divider>
+        <mat-list-item > 
+                
+            <p class="center">
+                Choisissez vos émotions :
+            </p>    
+        </mat-list-item>
+          <p class="center">
+            <mat-list-item *ngFor="let emotion of emotions; let i = index" (click)='onClick(emotion)'>
+                <h4 mat-line>{{ emotion }}</h4>
+                
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item > 
+                
+                <p class="center">
+                    Ajouter votre émotion :
+                </p>    
+            </mat-list-item>
+            <mat-list-item > 
+                <p class="center">
+                    <textarea matInput
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="1"
+                              [(ngModel)]="defaultValue"
+                              #emotion>
+                    </textarea>
+                </p>   
+            </mat-list-item>
+            <mat-list-item > 
+                <p class="center">
+                    <button  mat-raised-button color="accent" (click)="onClick(emotion.value)">
+                        Ajouter
+                    </button>
+                </p>
+                <mat-divider></mat-divider>   
+            </mat-list-item>
+            <mat-list-item >
+                <h3 class="center">Vos émotions : </h3>
+                
+            </mat-list-item>
+            <mat-list-item *ngFor="let emotionS of emotionsSelected; let i = index" (click)='onClick(emotionS)'>
+                <h4 mat-line>{{ emotionS }}</h4>
+            </mat-list-item>
+            <mat-divider></mat-divider> 
+            <mat-list-item > 
+                <p class="center">
+                    <button  mat-raised-button color="accent" (click)="onSubmitNext()">
+                        Suivant
+                    </button>
+                </p>
+                  
+            </mat-list-item>
+          </p>
+          
+      </mat-list>
+    </div>
+</div>

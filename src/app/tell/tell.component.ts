@@ -24,7 +24,7 @@ export class TellComponent implements OnInit {
     localStorage.setItem('historique', JSON.stringify(historique));
     if (this.modification){
       this.ngZone.run(() => {
-        this.router.navigate(['audio']);
+        this.router.navigate(['perceptions']);
       });
     } else {
       this.ngZone.run(() => {

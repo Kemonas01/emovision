@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+        <h1 class="center"><strong> Vous devez choisir l'émotion la plus présente chez vous : </strong></h1>
+        <mat-divider></mat-divider>
+        <mat-list-item > 
+        </mat-list-item>
+          <p class="center">
+            <mat-list-item *ngFor="let emotion of emotionSelected; let i = index" (click)='onClick(emotion)'>
+                <h4 mat-line>{{ emotion }}</h4>
+                
+            </mat-list-item>
+          </p>
+          <mat-list-item > 
+            <p class="center">
+                <button  mat-raised-button color="accent" (click)="onSubmit()">
+                    Valider
+                </button>
+            </p>
+              
+        </mat-list-item>
+      </mat-list>
+    </div>
+</div>

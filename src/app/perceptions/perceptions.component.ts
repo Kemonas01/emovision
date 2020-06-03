@@ -21,7 +21,13 @@ export class PerceptionsComponent implements OnInit {
 
   onSubmitFeeling(){
     this.ngZone.run(() => {
-      this.router.navigate(['emotions']);
+      this.router.navigate(['familles']);
+    });
+  }
+
+  onSubmit(){
+    this.ngZone.run(() => {
+      this.router.navigate(['audio']);
     });
   }
 }

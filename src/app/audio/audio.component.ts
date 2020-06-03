@@ -74,6 +74,7 @@ export class AudioComponent implements OnInit {
   }
 
   onSubmit(){
+    this.stop();
     this.ngZone.run(() => {
       this.router.navigate(['body']);
     });

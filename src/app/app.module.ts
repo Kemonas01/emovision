@@ -22,6 +22,9 @@ import { TellComponent } from './tell/tell.component';
 import { AudioComponent } from './audio/audio.component';
 import { BodyComponent } from './body/body.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { FamillesComponent } from './familles/familles.component';
+import { EmotionsSelectedComponent } from './emotion/emotions-selected/emotions-selected.component';
+import { EmotionEchelleComponent } from './emotion/emotion-echelle/emotion-echelle.component';
 
 
 
@@ -53,6 +56,9 @@ const firebaseConfig = {
     TellComponent,
     AudioComponent,
     BodyComponent,
+    FamillesComponent,
+    EmotionsSelectedComponent,
+    EmotionEchelleComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,9 @@ import { PerceptionsComponent } from './perceptions/perceptions.component';
 import { TellComponent } from './tell/tell.component';
 import { AudioComponent } from './audio/audio.component';
 import { BodyComponent } from './body/body.component';
+import { FamillesComponent } from './familles/familles.component';
+import { EmotionsSelectedComponent } from './emotion/emotions-selected/emotions-selected.component';
+import { EmotionEchelleComponent } from './emotion/emotion-echelle/emotion-echelle.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,7 +24,10 @@ const routes: Routes = [
   { path: 'tell', component: TellComponent, canActivate: [AuthGuard]},
   { path: 'audio', component: AudioComponent, canActivate: [AuthGuard]},
   { path: 'body', component: BodyComponent, canActivate: [AuthGuard]},
-  { path: 'emotions', component: EmotionComponent, canActivate: [AuthGuard]},
+  { path: 'emotions/:i', component: EmotionComponent, canActivate: [AuthGuard]},
+  { path: 'familles', component: FamillesComponent, canActivate: [AuthGuard]},
+  { path: 'emotions-selected', component: EmotionsSelectedComponent, canActivate: [AuthGuard]},
+  { path: 'emotions-echelle', component: EmotionEchelleComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },
@@ -33,6 +39,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
