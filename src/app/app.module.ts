@@ -19,7 +19,9 @@ import { MaterialModule } from './material.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PerceptionsComponent } from './perceptions/perceptions.component';
 import { TellComponent } from './tell/tell.component';
-import { AudioComponent, AudioDialogComponent } from './audio/audio.component';
+import { AudioComponent } from './audio/audio.component';
+import { BodyComponent } from './body/body.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 
@@ -50,7 +52,7 @@ const firebaseConfig = {
     PerceptionsComponent,
     TellComponent,
     AudioComponent,
-    AudioDialogComponent,
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ const firebaseConfig = {
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    TooltipModule,
   ],
   providers: [AuthService,
               { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],

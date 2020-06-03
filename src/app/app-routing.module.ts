@@ -13,13 +13,15 @@ import { HomeComponent } from './home/home.component';
 import { PerceptionsComponent } from './perceptions/perceptions.component';
 import { TellComponent } from './tell/tell.component';
 import { AudioComponent } from './audio/audio.component';
+import { BodyComponent } from './body/body.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'emotion', component: EmotionComponent, canActivate: [AuthGuard]},
   { path: 'perceptions', component: PerceptionsComponent, canActivate: [AuthGuard]},
   { path: 'tell', component: TellComponent, canActivate: [AuthGuard]},
   { path: 'audio', component: AudioComponent, canActivate: [AuthGuard]},
+  { path: 'body', component: BodyComponent, canActivate: [AuthGuard]},
+  { path: 'emotions', component: EmotionComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },

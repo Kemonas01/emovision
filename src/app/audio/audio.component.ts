@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Track } from './../interfaces/track';
 import { Howl } from 'howler';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
@@ -17,7 +17,7 @@ export class AudioComponent implements OnInit {
   activeTrack: Track = null;
   isPlaying = false;
   lunch = false;
-  constructor(public dialog: MatDialog) { }
+  constructor(public ngZone: NgZone, public router: Router ) { }
 
   ngOnInit(): void {
   }
@@ -73,15 +73,10 @@ export class AudioComponent implements OnInit {
     }
   }
 
-  openModal(){
-    this.dialog.open(AudioDialogComponent)
+  onSubmit(){
+    this.ngZone.run(() => {
+      this.router.navigate(['body']);
+    });
   }
 }
 
-@Component({
-  selector: 'app-audio-dialog',
-  templateUrl: './audio-dialog.component.html',
-  styleUrls: ['./audio.component.css']
-})
-
-export class AudioDialogComponent {}

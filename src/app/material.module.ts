@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -37,6 +38,7 @@ const modules = [
   MatSliderModule,
   TextFieldModule,
   MatDialogModule,
+  MatTooltipModule,
 ];
 
 
