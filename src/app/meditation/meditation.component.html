@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+        <mat-list-item>
+            <p class="center">
+                Méditation
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center">
+                <mat-toolbar>
+                    <mat-toolbar-row class="media-action-bar">
+                        <button mat-button (click)="audio.prev()">
+                            <mat-icon mat-list-icon>skip_previous</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="!audio.lunch" (click)="audio.start(audio.track[0])">
+                            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="!audio.isPlaying && audio.lunch" (click)="audio.togglePlayer(false)">
+                            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="audio.isPlaying">
+                            <mat-icon mat-list-icon  (click)="audio.togglePlayer(true)">pause</mat-icon>
+                        </button>
+                        <button  mat-button >
+                            <mat-icon mat-list-icon (click)="audio.stop()">stop</mat-icon>
+                        </button>
+                    </mat-toolbar-row>
+                  </mat-toolbar>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center" >
+                <button  mat-raised-button color="accent" (click)="onSubmit()">
+                    J'ai terminé
+                </button>
+            </p>
+          </mat-list-item>
+      </mat-list>
+      
+    </div>
+</div>

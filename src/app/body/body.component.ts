@@ -22,8 +22,8 @@ export class BodyComponent implements OnInit {
     const historique = JSON.parse(localStorage.getItem('historique'));
     historique.localisationDouleur  = this.selected;
     localStorage.setItem('historique', JSON.stringify(historique));
-    /*this.ngZone.run(() => {
-      this.router.navigate(['body']);
-    });*/
+    this.ngZone.run(() => {
+      this.router.navigate(['ressentir']);
+    });
   }
 }

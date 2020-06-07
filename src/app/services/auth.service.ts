@@ -172,8 +172,8 @@ export class AuthService {
     firebase.database().ref(`utilisateurs/${this.userId}`).set(test);
   }
 
-  createHistorique(){
-    firebase.database().ref(`utilisateurs/kmYdrxs9odhcrpxn1blP1mqHLiB3`);
+  createHistorique(data){
+    firebase.database().ref(`historiques/${this.userId}`).push(data);
   }
 
 }

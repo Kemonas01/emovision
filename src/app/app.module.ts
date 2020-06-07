@@ -25,6 +25,10 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { FamillesComponent } from './familles/familles.component';
 import { EmotionsSelectedComponent } from './emotion/emotions-selected/emotions-selected.component';
 import { EmotionEchelleComponent } from './emotion/emotion-echelle/emotion-echelle.component';
+import { RessentirComponent } from './ressentir/ressentir.component';
+import { MeditationComponent } from './meditation/meditation.component';
+import { RessentirAvantComponent } from './ressentir/ressentir-avant/ressentir-avant.component';
+import { AvantMaintenantComponent } from './avant-maintenant/avant-maintenant.component';
 
 
 
@@ -59,6 +63,10 @@ const firebaseConfig = {
     FamillesComponent,
     EmotionsSelectedComponent,
     EmotionEchelleComponent,
+    RessentirComponent,
+    MeditationComponent,
+    RessentirAvantComponent,
+    AvantMaintenantComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,10 @@ import { BodyComponent } from './body/body.component';
 import { FamillesComponent } from './familles/familles.component';
 import { EmotionsSelectedComponent } from './emotion/emotions-selected/emotions-selected.component';
 import { EmotionEchelleComponent } from './emotion/emotion-echelle/emotion-echelle.component';
+import { RessentirComponent } from './ressentir/ressentir.component';
+import { MeditationComponent } from './meditation/meditation.component';
+import { RessentirAvantComponent } from './ressentir/ressentir-avant/ressentir-avant.component';
+import { AvantMaintenantComponent } from './avant-maintenant/avant-maintenant.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -28,11 +32,15 @@ const routes: Routes = [
   { path: 'familles', component: FamillesComponent, canActivate: [AuthGuard]},
   { path: 'emotions-selected', component: EmotionsSelectedComponent, canActivate: [AuthGuard]},
   { path: 'emotions-echelle', component: EmotionEchelleComponent, canActivate: [AuthGuard]},
+  { path: 'ressentir', component: RessentirComponent, canActivate: [AuthGuard]},
+  { path: 'ressentir-avant', component: RessentirAvantComponent, canActivate: [AuthGuard]},
+  { path: 'meditation', component: MeditationComponent, canActivate: [AuthGuard]},
+  { path: 'avant-maintenant', component: AvantMaintenantComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },
   { path: 'forgot-password', component:  ForgotPasswordComponent },
-  { path: 'home', component: HomeComponent},
+  { path: 'home/:state', component: HomeComponent},
   { path: 'verify-email', component:  VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: '**', redirectTo: '' },
 ];

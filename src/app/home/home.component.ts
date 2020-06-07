@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   user: any;
   value: any = 0;
+  state = 0;
   formatLabel(value: number) {
     if (value >= 1000) {
       return Math.round(value / 1000);
@@ -17,9 +18,12 @@ export class HomeComponent implements OnInit {
 
     return value;
   }
-  constructor(public authService: AuthService, public ngZone: NgZone, public router: Router) { }
+  constructor(public authService: AuthService, public ngZone: NgZone, public router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.state = params.state;
+    });
     this.authService.getUserList().then(
       (user) => {
         this.user = user;
@@ -33,7 +37,6 @@ export class HomeComponent implements OnInit {
 
   onSliderChangeEnd(event){
     this.value = event.value;
-    console.log(this.value);
   }
 
   onSubmit(){
@@ -43,6 +46,14 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('historique', JSON.stringify(test));
     this.ngZone.run(() => {
       this.router.navigate(['perceptions']);
+    });
+  }
+  onSubmitSecound(){
+    const historique = JSON.parse(localStorage.getItem('historique'));
+    historique.degreAprès = this.value;
+    localStorage.setItem('historique', JSON.stringify(historique));
+    this.ngZone.run(() => {
+      this.router.navigate(['avant-maintenant']);
     });
   }
 }

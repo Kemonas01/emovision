@@ -3,15 +3,18 @@
         <div class="logo">
         </div>
       <mat-list color="primary">
-        <p class="header" *ngIf ='user'>
+        <p class="header" *ngIf ='user && state!=1' >
             Bonjour {{user.prenom}}
         </p>
-        <p class="header" *ngIf ='!user'>
+        <p class="header" *ngIf ='!user && state!=1' >
           Bonjour Mr. Anonyme
         </p>
         <mat-list-item>
-          <p class="center">
+          <p class="center" *ngIf="state!=1">
               Vous vous sentez comment aujourd'hui ?
+          </p>
+          <p class="center" *ngIf="state==1">
+            Et à présent ? Comment vous sentez vous
           </p>
         </mat-list-item>  
           <mat-list-item>
@@ -26,9 +29,12 @@
             </p>
           </mat-list-item>
           <mat-list-item>
-            <p class="center">
+            <p class="center" *ngIf="state!=1">
                 <button mat-raised-button color="accent" (click)="onSubmit()">OK</button>
             </p>
+            <p class="center" *ngIf="state==1">
+              <button mat-raised-button color="accent" (click)="onSubmitSecound()">Suivant</button>
+          </p>
           </mat-list-item>
       </mat-list>
     </div>

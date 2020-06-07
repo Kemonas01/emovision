@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
+        <mat-list-item>
+          <p class="center">
+              avant
+          </p>
+        </mat-list-item>  
+          <mat-list-item>
+            <p class="center">
+                <mat-slider
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="10" [value]="degreAvant">
+                </mat-slider>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center">
+                après
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center">
+                <mat-slider
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="10" [value]="degreApres">
+                </mat-slider>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <p class="center" >
+              <button mat-raised-button color="accent" (click)="onSubmit()">Finis</button>
+             </p>
+          </mat-list-item>
+      </mat-list>
+    </div>
+</div>
