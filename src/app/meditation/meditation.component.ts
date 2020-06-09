@@ -15,7 +15,9 @@ export class MeditationComponent implements OnInit {
   }
 
   onSubmit(){
-    this.audio.stop();
+    if (this.audio.isPlaying){
+      this.audio.stop();
+    }
     this.ngZone.run(() => {
       this.router.navigate(['home', 1]);
     });

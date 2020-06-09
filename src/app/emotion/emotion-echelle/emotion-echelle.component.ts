@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class EmotionEchelleComponent implements OnInit {
   emotionSelected = null;
   value: any = 0;
+  selected = false;
   formatLabel(value: number) {
     if (value >= 1000) {
       return Math.round(value / 1000);

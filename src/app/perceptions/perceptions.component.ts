@@ -25,9 +25,15 @@ export class PerceptionsComponent implements OnInit {
     });
   }
 
+  onSubmitFeel(){
+    this.ngZone.run(() => {
+      this.router.navigate(['body']);
+    });
+  }
+
   onSubmit(){
     this.ngZone.run(() => {
-      this.router.navigate(['audio']);
+      this.router.navigate(['meditation']);
     });
   }
 }

@@ -1,63 +1,54 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
+<div class="container pt-5">
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4 center">
+            <div class="form-group ">
+                <label for="exampleFormControlTextarea1">Où et avec qui ?</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="defaultValue" #test></textarea>
+            </div>
         </div>
-      <mat-list color="primary">
-          <p class="center">
-            <mat-list-item >
-                <div class="center">
-                    <mat-form-field>
-                        <mat-label>Où et avec qui</mat-label>
-                        <textarea matInput
-                                  cdkTextareaAutosize
-                                  cdkAutosizeMinRows="1"
-                                  cdkAutosizeMaxRows="5"
-                                  [(ngModel)]="defaultValue"
-                                  #test></textarea>
-                      </mat-form-field>
-                </div>
-            </mat-list-item>
-            <br>
-            <mat-list-item >
-                <div class="center">
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Date</mat-label>
-                        <input matInput [matDatepicker]="picker" #date [(ngModel)]="defaultValueDate">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                </div>
-            </mat-list-item>
-
-            
-          </p>
-          <p class="center">
-            <mat-list-item >
-                <p class="center">
-                    <button  mat-raised-button color="accent" (click)="onClick(test.value, date.value)">
-                        Ajouter
-                    </button>
-                </p>
-            </mat-list-item>
-          </p>
-          <p class="center">
-              <strong>Liste : </strong>
-            <mat-list-item *ngFor="let item of ressentieAll" (click)="onClick(item , date.value)">
-                <p class="center" >
-                    {{item}}
-                </p>
-            </mat-list-item>
-          </p>
-          <p class="center">
-            <mat-list-item >
-                <p class="center">
-                    <button  mat-raised-button color="accent" (click)="onSubmit()">
-                        Valider
-                    </button>
-                </p>
-            </mat-list-item>
-          </p>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4 center">
+            <mat-form-field appearance="legacy">
+                <mat-label>Quand ?</mat-label>
+                <input matInput [matDatepicker]="picker" #date [(ngModel)]="defaultValueDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4 center">
+            <button  mat-raised-button color="link" (click)="onClick(test.value, date.value)">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4 center">
+            Voici ce que vous avez ajouté.e (cliquez pour supprimer) :
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="center list-group-item" *ngFor="let item of ressentieAll" (click)="onClick(item , date.value)">{{item}}</li>
+              </ul>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="d-flex align-items-end flex-column">
+                <button  mat-raised-button color="primary" (click)="onSubmit()">
+                    Suivant
+                </button>
+            </div>
+        </div>
         
-      </mat-list>
     </div>
 </div>

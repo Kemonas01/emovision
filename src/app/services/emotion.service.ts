@@ -13,7 +13,17 @@ export class EmotionService {
   constructor() {}
 
   setData(value) {
-    this.data.next(value);
+    const test = [];
+    // tslint:disable-next-line:forin
+    for (const i in value){
+      const json = {
+        emotion: value[i],
+        checked: false
+      };
+      test.push(json);
+    }
+    this.emotions = test;
+    this.data.next(this.emotions);
   }
 
   getData(): Observable<any> {

@@ -25,11 +25,12 @@ export class RessentirAvantComponent implements OnInit {
       return text.indexOf( ou ) !== -1 ;
     });
     if ( !found ) {
-      this.ressentieAll.push(ou + ' le ' + date);
       this.text.push(ou);
       if (date.length > 0){
+        this.ressentieAll.push(ou + ' le ' + date);
         this.date.push(date);
       } else {
+        this.ressentieAll.push(ou);
         this.date.push('');
       }
     } else {
@@ -55,7 +56,7 @@ export class RessentirAvantComponent implements OnInit {
     historique.ressenti.raconte = historiqueJson;
     localStorage.setItem('historique', JSON.stringify(historique));
     this.ngZone.run(() => {
-      this.router.navigate(['meditation']);
+      this.router.navigate(['perceptions']);
     });
   }
 }

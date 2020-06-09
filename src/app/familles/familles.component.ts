@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-familles',
   templateUrl: './familles.component.html',
-  styleUrls: ['./familles.component.css']
+  styleUrls: ['./familles.component.scss']
 })
 export class FamillesComponent implements OnInit {
   emotions = [];

@@ -27,5 +27,6 @@ export class AvantMaintenantComponent implements OnInit {
   onSubmit(){
     const historique = JSON.parse(localStorage.getItem('historique'));
     this.store.createHistorique(historique);
+    localStorage.removeItem('historique');
   }
 }

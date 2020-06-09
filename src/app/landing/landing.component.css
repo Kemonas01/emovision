@@ -1,4 +1,16 @@
-.parent img {
-    height: 100%;
-    width: 100%;
- }
+.masthead {
+    height: 60vh;
+    min-height: 400px;
+    background-image: url('../../assets/images/attente-haut.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }

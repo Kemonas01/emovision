@@ -1,65 +1,44 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
+<div class="container pt-5">
+    <div class="row mt-3">
+        <div class="col-1">
         </div>
-      <mat-list color="primary">
-        <h1 class="center"><strong> {{ title }} </strong></h1>
-        <mat-divider></mat-divider>
-        <mat-list-item > 
-                
-            <p class="center">
-                Choisissez vos émotions :
-            </p>    
-        </mat-list-item>
-          <p class="center">
-            <mat-list-item *ngFor="let emotion of emotions; let i = index" (click)='onClick(emotion)'>
-                <h4 mat-line>{{ emotion }}</h4>
-                
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item > 
-                
-                <p class="center">
-                    Ajouter votre émotion :
-                </p>    
-            </mat-list-item>
-            <mat-list-item > 
-                <p class="center">
-                    <textarea matInput
-                              cdkTextareaAutosize
-                              cdkAutosizeMinRows="1"
-                              cdkAutosizeMaxRows="1"
-                              [(ngModel)]="defaultValue"
-                              #emotion>
-                    </textarea>
-                </p>   
-            </mat-list-item>
-            <mat-list-item > 
-                <p class="center">
-                    <button  mat-raised-button color="accent" (click)="onClick(emotion.value)">
-                        Ajouter
-                    </button>
-                </p>
-                <mat-divider></mat-divider>   
-            </mat-list-item>
-            <mat-list-item >
-                <h3 class="center">Vos émotions : </h3>
-                
-            </mat-list-item>
-            <mat-list-item *ngFor="let emotionS of emotionsSelected; let i = index" (click)='onClick(emotionS)'>
-                <h4 mat-line>{{ emotionS }}</h4>
-            </mat-list-item>
-            <mat-divider></mat-divider> 
-            <mat-list-item > 
-                <p class="center">
-                    <button  mat-raised-button color="accent" (click)="onSubmitNext()">
-                        Suivant
-                    </button>
-                </p>
-                  
-            </mat-list-item>
-          </p>
-          
-      </mat-list>
+        <div class="col-10 center">
+            <div class=" center" id="checklist" *ngFor="let test of emotions; let i = index">
+                <input id={{i}} type="checkbox" name="r" value={{i}} (click)="onClick(test)">
+                <label for={{i}}>{{test}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-8">
+            <div class="form-group center">
+                <label for="exampleFormControlTextarea1">Ajouter vos émotions :</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                [(ngModel)]="defaultValue"
+                #emotion></textarea>
+              </div>
+        </div>
+        <div class="col-4 my-auto">
+            <button  mat-raised-button color="link" (click)="onClickAdd(emotion.value)">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-1">
+        </div>
+        <div class="col-10 center">
+            <div class=" center" id="checklist" *ngFor="let emotionAdd of emotionsAdd; let sizeEmotion" (click)='onClickAdd(emotionAdd)'>
+                <input id={{sizeEmotion}} type="checkbox" name="r" value={{sizeEmotion}}  checked>
+                <label for={{sizeEmotion}}>{{emotionAdd}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 mb-4">
+        <div class="col center">
+            <button  mat-raised-button color="primary" (click)="onSubmitNext()">
+                Suivant
+            </button>
+        </div>
     </div>
 </div>

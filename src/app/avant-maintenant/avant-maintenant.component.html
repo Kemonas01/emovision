@@ -1,45 +1,88 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
-        </div>
-      <mat-list color="primary">
-        <mat-list-item>
-          <p class="center">
-              avant
-          </p>
-        </mat-list-item>  
-          <mat-list-item>
-            <p class="center">
-                <mat-slider
-                thumbLabel
-                [displayWith]="formatLabel"
-                tickInterval="1"
-                min="1"
-                max="10" [value]="degreAvant">
-                </mat-slider>
-            </p>
-          </mat-list-item>
-          <mat-list-item>
-            <p class="center">
-                après
-            </p>
-          </mat-list-item>
-          <mat-list-item>
-            <p class="center">
-                <mat-slider
-                thumbLabel
-                [displayWith]="formatLabel"
-                tickInterval="1"
-                min="1"
-                max="10" [value]="degreApres">
-                </mat-slider>
-            </p>
-          </mat-list-item>
-          <mat-list-item>
-            <p class="center" >
-              <button mat-raised-button color="accent" (click)="onSubmit()">Finis</button>
-             </p>
-          </mat-list-item>
-      </mat-list>
+<div class="container pt-5">
+  <div class="row mt-3">
+    <div class="col center">
+      <h1>Avant :</h1>
     </div>
+  </div>
+  <div class="row mt-3 mb-2">
+    <div class="col-4"></div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_satisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_satisfied
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 center"> 
+      <mat-slider class="slider"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="10" [value]="degreAvant" disabled>
+      </mat-slider>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col center">
+      <h1>Après :</h1>
+    </div>
+  </div>
+  <div class="row mt-3 mb-2">
+    <div class="col-4"></div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_satisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_satisfied
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 center"> 
+      <mat-slider class="slider"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="10" [value]="degreApres" disabled>
+                </mat-slider>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col center" *ngIf="degreApres>0">
+      <button mat-raised-button color="primary" (click)="onSubmit()">Finis</button>
+    </div>
+  </div>
 </div>
+

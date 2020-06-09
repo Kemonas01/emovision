@@ -1,29 +1,26 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
-        </div>
-      <mat-list color="primary">
-          <mat-list-item>
-            <p class="center">
-                <mat-form-field>
-                    <mat-label>Autosize textarea</mat-label>
-                    <textarea matInput
-                              cdkTextareaAutosize
-                              cdkAutosizeMinRows="5"
-                              cdkAutosizeMaxRows="5"
-                              value = {{valueText}}
-                              #test></textarea>
-                  </mat-form-field>
-            </p>
-          </mat-list-item>
-          <mat-list-item>
-            <p class="center" *ngIf="!modification">
-                <button mat-raised-button color="accent" (click)="onSubmit(test.value)">Je raconte</button>
-            </p>
-            <p class="center" *ngIf="modification">
-              <button mat-raised-button color="accent" (click)="onSubmit(test.value)">Modifier et valider</button>
-          </p>
-          </mat-list-item>
-      </mat-list>
+<div class="container pt-5">
+  <div class="row mt-4">
+    <div class="col">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Que s’est-il passé ? </label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value = {{valueText}}
+        #test></textarea>
+      </div>
     </div>
+  </div>
+  <div class="row mt-3 align-items-center">
+    <div class="col-4">
+      <button *ngIf="modification" mat-raised-button color="link" (click)="onSubmit(test.value)">Modifier</button>
+    </div>
+    <div class="col-4">
+        <p class="center" *ngIf="!modification">
+          <button mat-raised-button color="link"  (click)="onSubmit(test.value)">Valider</button>
+        </p>
+    </div>
+    <div class="col-4 " *ngIf="modification">
+      <p class="d-flex justify-content-end">
+        <button *ngIf="modification" mat-raised-button color="primary"  (click)="onSubmitNext()">Suivant</button>
+      </p>
+    </div>
+  </div>
 </div>

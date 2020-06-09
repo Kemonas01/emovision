@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-body',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class BodyComponent implements OnInit {
   isHover = false;
   selected = '';
+  divSvgDos = false;
   constructor(public ngZone: NgZone, public router: Router) { }
 
   ngOnInit(): void {
@@ -18,12 +20,19 @@ export class BodyComponent implements OnInit {
     this.selected = value;
   }
 
-  onSubmit(){
+  onSubmit(sensasationDouleur){
     const historique = JSON.parse(localStorage.getItem('historique'));
-    historique.localisationDouleur  = this.selected;
+    historique.douleur  = {
+      localisation: this.selected,
+      sensation: sensasationDouleur
+    };
     localStorage.setItem('historique', JSON.stringify(historique));
     this.ngZone.run(() => {
       this.router.navigate(['ressentir']);
     });
+  }
+
+  onSubmitDF(){
+    this.divSvgDos = this.divSvgDos ? false : true;
   }
 }

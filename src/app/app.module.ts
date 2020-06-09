@@ -29,6 +29,7 @@ import { RessentirComponent } from './ressentir/ressentir.component';
 import { MeditationComponent } from './meditation/meditation.component';
 import { RessentirAvantComponent } from './ressentir/ressentir-avant/ressentir-avant.component';
 import { AvantMaintenantComponent } from './avant-maintenant/avant-maintenant.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -67,6 +68,7 @@ const firebaseConfig = {
     MeditationComponent,
     RessentirAvantComponent,
     AvantMaintenantComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

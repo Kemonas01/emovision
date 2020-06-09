@@ -6,10 +6,28 @@ import { Howl } from 'howler';
   providedIn: 'root'
 })
 export class AudioService {
-  track: Track[] = [{
+  track: Track[] = [
+    {
     name: 'test',
-    path: '../../assets/tracks/audio.mp3'
-  }];
+    path: '../../assets/tracks/presence.mp3'
+    },
+    {
+      name: 'test',
+      path: '../../assets/tracks/initial.mp3'
+    },
+    {
+      name: 'test',
+      path: '../../assets/tracks/retourPresence.mp3'
+    },
+    {
+      name: 'test',
+      path: '../../assets/tracks/1.mp3'
+    },
+    {
+      name: 'test',
+      path: '../../assets/tracks/2.mp3'
+    },
+];
 
   player: Howl = null;
   activeTrack: Track = null;
@@ -29,7 +47,7 @@ export class AudioService {
         this.activeTrack = track;
       },
       onend: () => {
-        this.player.stop();
+        this.next();
       }
     });
     this.player.play();
@@ -52,10 +70,13 @@ export class AudioService {
 
   next() {
     const index = this.track.indexOf(this.activeTrack);
-    if (index !== this.track.length - 1) {
+    if (index === 0) {
       this.start(this.track[index + 1]);
-    } else {
-      this.start(this.track[0]);
+    }
+    if (index === 4) {
+      this.start(this.track[3]);
+    } else  {
+      this.start(this.track[index + 1]);
     }
   }
 
@@ -64,7 +85,7 @@ export class AudioService {
     if (index > 0) {
       this.start(this.track[index - 1]);
     } else {
-      this.start(this.track[this.track.length - 1]);
+      this.start(this.track[0]);
     }
   }
 }

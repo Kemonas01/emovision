@@ -15,21 +15,19 @@ export class TellComponent implements OnInit {
     this.valueText = JSON.parse(localStorage.getItem('historique')).temoignage;
     if (this.valueText) {
       this.modification = (this.valueText.length === 0) ? false : true;
-      console.log(this.modification);
     }
   }
+
   onSubmit(text){
     const historique = JSON.parse(localStorage.getItem('historique'));
     historique.temoignage = text;
     localStorage.setItem('historique', JSON.stringify(historique));
-    if (this.modification){
-      this.ngZone.run(() => {
-        this.router.navigate(['perceptions']);
-      });
-    } else {
-      this.ngZone.run(() => {
-        this.router.navigate(['tell']);
-      });
-    }
+    location.reload();
+  }
+
+  onSubmitNext(){
+    this.ngZone.run(() => {
+      this.router.navigate(['perceptions']);
+    });
   }
 }

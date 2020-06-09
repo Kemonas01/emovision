@@ -6,15 +6,18 @@ import { EmotionService } from '../services/emotion.service';
 @Component({
   selector: 'app-emotion',
   templateUrl: './emotion.component.html',
-  styleUrls: ['./emotion.component.css']
+  styleUrls: ['./emotion.component.scss']
 })
 export class EmotionComponent implements OnInit {
   emotions = [];
   emotionsSelected = [];
+  emotionsAdd = [];
   title = '';
+  sizeEmotions = 0;
   index = null;
   indexS = null;
   defaultValue = '';
+
   constructor(public storage: StorageService,
               private route: ActivatedRoute,
               public emotionService: EmotionService,
@@ -36,16 +39,11 @@ export class EmotionComponent implements OnInit {
     for (const value in data) {
       this.emotions.push(data[value].libelle);
     }
+    this.sizeEmotions = this.emotions.length + 1;
   }
 
   onClick(data){
     const historique = JSON.parse(localStorage.getItem('historique'));
-    /*const ressentie = {
-      famille: this.title,
-      emotion: data
-    };
-    historique.emotionRessentie = ressentie;
-    localStorage.setItem('historique', JSON.stringify(historique));*/
     const found  = this.emotionsSelected.some( ( text ) => {
       this.indexS = this.emotionsSelected.indexOf( data );
       return text.indexOf( data ) !== -1 ;
@@ -56,7 +54,20 @@ export class EmotionComponent implements OnInit {
       this.emotionsSelected.splice(this.indexS, 1);
     }
     this.defaultValue = '';
-    console.log(this.emotionsSelected);
+  }
+
+  onClickAdd(data){
+    this.sizeEmotions += 1;
+    const found  = this.emotionsAdd.some( ( text ) => {
+      this.indexS = this.emotionsAdd.indexOf( data );
+      return text.indexOf( data ) !== -1 ;
+    });
+    if ( !found ) {
+      this.emotionsAdd.push(data);
+    } else {
+      this.emotionsAdd.splice(this.indexS, 1);
+    }
+    this.defaultValue = '';
   }
 
   onSubmitNext(){
@@ -67,6 +78,12 @@ export class EmotionComponent implements OnInit {
     };
     historique.emotionRessentie = ressentie;
     localStorage.setItem('historique', JSON.stringify(historique));
+    if (this.emotionsAdd.length > 0){
+      // tslint:disable-next-line:forin
+      for (const i in this.emotionsAdd) {
+        this.emotionsSelected.push(this.emotionsAdd[i]);
+      }
+    }
     this.emotionService.setData(this.emotionsSelected);
     this.ngZone.run(() => {
       this.router.navigate(['emotions-selected']);

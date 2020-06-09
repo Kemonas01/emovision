@@ -1,26 +1,28 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
-        </div>
-      <mat-list color="primary">
-        <h1 class="center"><strong> Vous devez choisir l'émotion la plus présente chez vous : </strong></h1>
-        <mat-divider></mat-divider>
-        <mat-list-item > 
-        </mat-list-item>
-          <p class="center">
-            <mat-list-item *ngFor="let emotion of emotionSelected; let i = index" (click)='onClick(emotion)'>
-                <h4 mat-line>{{ emotion }}</h4>
-                
-            </mat-list-item>
-          </p>
-          <mat-list-item > 
-            <p class="center">
-                <button  mat-raised-button color="accent" (click)="onSubmit()">
-                    Valider
-                </button>
-            </p>
-              
-        </mat-list-item>
-      </mat-list>
+<div class="container pt-5">
+  <div class="row mt-3">
+    <div class="col center">
+      <h1 class="center"><strong> Vous devez choisir l'émotion la plus présente chez vous : </strong></h1>
     </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-1">
+    </div>
+    <div class="col-10 center">
+        <div class=" center" id="checklist" *ngFor="let emotion of emotionSelected; let i = index" (click)='onClick(emotion.emotion,i)'>
+            <input id={{i}} type="checkbox" name="r" value={{emotion}} [checked]="emotion.checked" disabled>
+            <label for={{i}}>{{ emotion.emotion }}</label>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-4"></div>
+    <div class="col-4 center">
+      <button *ngIf="checked && !error" mat-raised-button color="primary" (click)="onSubmit()">
+        Valider
+      </button>
+      <button *ngIf="error" mat-raised-button color="primary" (click)="onSubmitError()">
+        Retour
+      </button>
+    </div>
+  </div>
 </div>

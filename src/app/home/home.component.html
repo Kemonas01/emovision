@@ -1,40 +1,80 @@
-<div class="container">
-    <div class="content">
-        <div class="logo">
-        </div>
-      <mat-list color="primary">
-        <p class="header" *ngIf ='user && state!=1' >
+<div class="container pt-5">
+  <div class="row mt-3">
+    <div class="col center">
+      <p class="header" *ngIf ='user && state!=1' >
             Bonjour {{user.prenom}}
         </p>
         <p class="header" *ngIf ='!user && state!=1' >
           Bonjour Mr. Anonyme
         </p>
-        <mat-list-item>
           <p class="center" *ngIf="state!=1">
               Vous vous sentez comment aujourd'hui ?
           </p>
           <p class="center" *ngIf="state==1">
             Et à présent ? Comment vous sentez vous
           </p>
-        </mat-list-item>  
+    </div>
+  </div>
+  <div class="row mt-3 mb-2">
+    <div class="col-4"></div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_dissatisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_satisfied
+      </span>
+    </div>
+    <div class="col-1 center"> 
+      <span class="material-icons">
+        sentiment_very_satisfied
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 center"> 
+      <mat-slider class="slider"
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="1"
+      min="1"
+      max="10" (input)="onSliderChangeEnd($event)" [value]="value" width="40" height="21">
+      </mat-slider>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col center">
+      <p class="center" *ngIf="state!=1">
+        <button mat-raised-button color="primary" (click)="onSubmit()">Suivant</button>
+      </p>
+      <p class="center" *ngIf="state==1">
+        <button mat-raised-button color="primary" (click)="onSubmitSecound()">Suivant</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+    <div class="content">
+        <div class="logo">
+        </div>
+      <mat-list color="primary">
           <mat-list-item>
             <p class="center">
-                <mat-slider
-                thumbLabel
-                [displayWith]="formatLabel"
-                tickInterval="1"
-                min="1"
-                max="10" (input)="onSliderChangeEnd($event)" [value]="value">
-                </mat-slider>
+                
             </p>
           </mat-list-item>
           <mat-list-item>
-            <p class="center" *ngIf="state!=1">
-                <button mat-raised-button color="accent" (click)="onSubmit()">OK</button>
-            </p>
-            <p class="center" *ngIf="state==1">
-              <button mat-raised-button color="accent" (click)="onSubmitSecound()">Suivant</button>
-          </p>
+            
           </mat-list-item>
       </mat-list>
     </div>
