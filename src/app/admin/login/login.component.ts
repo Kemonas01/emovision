@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { RouterLinkActive, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  constructor(public authService: AuthService) { }
+  error = null;
+  constructor(public authService: AuthService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.error = params.error;
+    });
   }
 
 }

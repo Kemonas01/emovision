@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+      <div class="col center">
+        <img src="../../../assets/images/attente-haut.jpg" alt="">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col center">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Nouvelle adresse mail</mat-label>
+                <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                       placeholder="Ex: pat@example.com" #mail required>
+                <mat-icon matSuffix>mail_outline</mat-icon>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Veuillez entrer une adresse mail valide
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  l'adresse mail est <strong>requise</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col center">
+            <button mat-raised-button color="link" (click)="onSubmit(mail.value)">Modifier mon adresse mail</button>
+        </div>
+    </div>
+</div>
+  
+  
+  

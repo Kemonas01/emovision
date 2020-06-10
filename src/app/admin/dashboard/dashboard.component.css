@@ -15,8 +15,12 @@
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    background-image: url('../../../assets/images/banner_test_2.png');
+    background-image: url('../../../assets/images/attente-haut.jpg');
 }
+img {
+    max-width: 100%;
+    height: auto;
+    }
 .container .content .logo {
     margin: 2.5rem;
     text-align: center;

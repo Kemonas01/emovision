@@ -25,25 +25,29 @@ export class EmotionComponent implements OnInit {
               public router: Router) { }
 
   ngOnInit() {
-    this.storage.getAllEmotions();
     this.getEmotions();
   }
 
   getEmotions(){
-    this.route.params.subscribe(params => {
-      this.index = params.i;
-    });
-    this.title = JSON.parse(localStorage.getItem('familles'))[this.index].libelle;
-    const data = JSON.parse(localStorage.getItem('familles'))[this.index].emotions;
-      // tslint:disable-next-line:forin
-    for (const value in data) {
-      this.emotions.push(data[value].libelle);
+    if (localStorage.getItem('familles') !== null){
+      this.route.params.subscribe(params => {
+        this.index = params.i;
+      });
+      this.title = JSON.parse(localStorage.getItem('familles'))[this.index].libelle;
+      const data = JSON.parse(localStorage.getItem('familles'))[this.index].emotions;
+        // tslint:disable-next-line:forin
+      for (const value in data) {
+        this.emotions.push(data[value].libelle);
+      }
+      this.sizeEmotions = this.emotions.length + 1;
+    } else {
+      this.ngZone.run(() => {
+        this.router.navigate(['familles']);
+      });
     }
-    this.sizeEmotions = this.emotions.length + 1;
   }
 
   onClick(data){
-    const historique = JSON.parse(localStorage.getItem('historique'));
     const found  = this.emotionsSelected.some( ( text ) => {
       this.indexS = this.emotionsSelected.indexOf( data );
       return text.indexOf( data ) !== -1 ;
@@ -71,22 +75,27 @@ export class EmotionComponent implements OnInit {
   }
 
   onSubmitNext(){
-    const historique = JSON.parse(localStorage.getItem('historique'));
-    const ressentie = {
-      famille: this.title,
-      emotion: ''
-    };
-    historique.emotionRessentie = ressentie;
-    localStorage.setItem('historique', JSON.stringify(historique));
-    if (this.emotionsAdd.length > 0){
-      // tslint:disable-next-line:forin
-      for (const i in this.emotionsAdd) {
-        this.emotionsSelected.push(this.emotionsAdd[i]);
+    if (this.storage.testHistorique()){
+      const historique = JSON.parse(localStorage.getItem('historique'));
+      const ressentie = {
+        famille: this.title,
+        emotion: ''
+      };
+      historique.emotionRessentie = ressentie;
+      localStorage.setItem('historique', JSON.stringify(historique));
+      if (this.emotionsAdd.length > 0){
+        // tslint:disable-next-line:forin
+        for (const i in this.emotionsAdd) {
+          this.emotionsSelected.push(this.emotionsAdd[i]);
+        }
       }
+      this.emotionService.setData(this.emotionsSelected);
+      this.ngZone.run(() => {
+        this.router.navigate(['emotions-selected']);
+      });
+    } else {
+      this.storage.redirectToHome();
     }
-    this.emotionService.setData(this.emotionsSelected);
-    this.ngZone.run(() => {
-      this.router.navigate(['emotions-selected']);
-    });
+
   }
 }

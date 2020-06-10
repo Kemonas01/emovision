@@ -12,11 +12,14 @@ export class FamillesComponent implements OnInit {
   constructor(public storage: StorageService, public ngZone: NgZone, public router: Router) { }
 
   ngOnInit() {
-    this.storage.getAllEmotions();
     this.getAllEmotions();
   }
 
   getAllEmotions(){
-    this.emotions = JSON.parse(localStorage.getItem('familles'));
+    if (localStorage.getItem('familles') === null){
+      this.storage.getAllEmotions();
+    } else {
+      this.emotions = JSON.parse(localStorage.getItem('familles'));
+    }
   }
 }

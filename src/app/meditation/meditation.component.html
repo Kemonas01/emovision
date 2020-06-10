@@ -9,7 +9,12 @@
             <mat-icon mat-list-icon>fiber_manual_record</mat-icon>
         </div>
     </div>
-    
+    <div class="row mt-5" >
+        <div class="mt-5 col center">
+            <strong *ngIf="audio.activeTrack">{{audio.activeTrack.name}}</strong>
+            <p *ngIf="!audio.activeTrack"></p>
+        </div>
+    </div>
         
     
     <div class="row mt-3">

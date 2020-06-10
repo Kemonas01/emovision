@@ -30,6 +30,9 @@ import { MeditationComponent } from './meditation/meditation.component';
 import { RessentirAvantComponent } from './ressentir/ressentir-avant/ressentir-avant.component';
 import { AvantMaintenantComponent } from './avant-maintenant/avant-maintenant.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ModifyEmailComponent } from './admin/dashboard/modify-email/modify-email.component';
+import { ModifyPasswordComponent } from './admin/dashboard/modify-password/modify-password.component';
+import { ModifyProfileComponent } from './admin/dashboard/modify-profile/modify-profile.component';
 
 
 
@@ -69,6 +72,9 @@ const firebaseConfig = {
     RessentirAvantComponent,
     AvantMaintenantComponent,
     NavbarComponent,
+    ModifyEmailComponent,
+    ModifyPasswordComponent,
+    ModifyProfileComponent,
   ],
   imports: [
     BrowserModule,

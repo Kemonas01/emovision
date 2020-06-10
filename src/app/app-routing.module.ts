@@ -21,6 +21,9 @@ import { RessentirComponent } from './ressentir/ressentir.component';
 import { MeditationComponent } from './meditation/meditation.component';
 import { RessentirAvantComponent } from './ressentir/ressentir-avant/ressentir-avant.component';
 import { AvantMaintenantComponent } from './avant-maintenant/avant-maintenant.component';
+import { ModifyEmailComponent } from './admin/dashboard/modify-email/modify-email.component';
+import { ModifyPasswordComponent } from './admin/dashboard/modify-password/modify-password.component';
+import { ModifyProfileComponent } from './admin/dashboard/modify-profile/modify-profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -32,10 +35,13 @@ const routes: Routes = [
   { path: 'familles', component: FamillesComponent, canActivate: [AuthGuard]},
   { path: 'emotions-selected', component: EmotionsSelectedComponent, canActivate: [AuthGuard]},
   { path: 'emotions-echelle', component: EmotionEchelleComponent, canActivate: [AuthGuard]},
+  { path: 'modify-password', component: ModifyPasswordComponent, canActivate: [AuthGuard]},
   { path: 'ressentir', component: RessentirComponent, canActivate: [AuthGuard]},
   { path: 'ressentir-avant', component: RessentirAvantComponent, canActivate: [AuthGuard]},
   { path: 'meditation', component: MeditationComponent, canActivate: [AuthGuard]},
   { path: 'avant-maintenant', component: AvantMaintenantComponent, canActivate: [AuthGuard]},
+  { path: 'modify-email', component: ModifyEmailComponent, canActivate: [AuthGuard]},
+  { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },
@@ -47,6 +53,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

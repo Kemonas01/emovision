@@ -7,12 +7,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a class="nav-link" [routerLink]="['/login']" *ngIf="!auth.isLoggedIn">Connexion
+            <a class="nav-link" [routerLink]="['/login']" *ngIf="!logged">Connexion
             </a>
-            <a class="nav-link" [routerLink]="['/dashboard']" *ngIf="auth.isLoggedIn">Profile
-          </a>
+            <a class="nav-link" [routerLink]="['/dashboard']" *ngIf="logged">Profile
+            </a>
           </li>
-          <li class="nav-item"  *ngIf="auth.isLoggedIn" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" *ngIf="logged" (click)="auth.SignOut('')">Deconnexion
+            </a>
+          </li>
+          <li class="nav-item"  *ngIf="logged" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
             <a class="nav-link" [routerLink]="['/home/0']">Commencer</a>
           </li>
           <li class="nav-item">

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="col center">
+        <img src="../../../assets/images/attente-haut.jpg" alt="">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col center">
+            <mat-form-field appearance="legacy">
+                <mat-label>Prénom</mat-label>
+                <input matInput placeholder="Prénom" #prenom [value]='utilisateur.prenom'>
+                <mat-icon matSuffix>face</mat-icon>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col center">
+            <mat-form-field appearance="legacy">
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Nom" #nom [value]='utilisateur.nom'>
+                <mat-icon matSuffix>face</mat-icon>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col center">
+            <mat-form-field>
+                <mat-label>Genre</mat-label>
+                <mat-select #genre [value]='utilisateur.genre'>
+                  <mat-option *ngFor="let genre of genres" [value]="genre.value">
+                    {{genre.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>accessibility</mat-icon>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col center">
+            <p class="center">
+                <mat-checkbox labelPosition="before" [(ngModel)]="confidentialite">En cochant cette case vous acceptez de <br>partager vos données </mat-checkbox>
+              </p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col center">
+            <button mat-raised-button color="link" (click)="onSubmit(prenom.value, nom.value, genre.value)">Valider mes nouvelles informations</button>
+        </div>
+    </div>
+</div>
+  
+  
+  

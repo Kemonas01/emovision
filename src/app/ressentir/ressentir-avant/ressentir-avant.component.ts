@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-ressentir-avant',
@@ -14,7 +15,9 @@ export class RessentirAvantComponent implements OnInit {
   defaultValueDate = '';
   date = [];
   text = [];
-  constructor(public ngZone: NgZone, public router: Router) { }
+  constructor(public ngZone: NgZone,
+              public router: Router,
+              public storage: StorageService) { }
 
   ngOnInit(): void {
   }
@@ -43,20 +46,31 @@ export class RessentirAvantComponent implements OnInit {
   }
 
   onSubmit(){
-    const historique = JSON.parse(localStorage.getItem('historique'));
-    const historiqueJson = [];
-    for (let i = 0; this.text.length > i; i++){
-      const json = {
-        localisation: this.text[i],
-        date: this.date [i]
-      };
-      historiqueJson.push(json);
+    if (this.storage.testHistorique()){
+      const historique = JSON.parse(localStorage.getItem('historique'));
+      const historiqueJson = [];
+      for (let i = 0; this.text.length > i; i++){
+        const json = {
+          localisation: this.text[i],
+          date: this.date [i]
+        };
+        historiqueJson.push(json);
+      }
+      console.log(historiqueJson);
+      if (historique.ressenti === undefined){
+        historique.ressenti = {
+          dejaRessenti: true,
+          raconte: historiqueJson
+        };
+      } else {
+        historique.ressenti.raconte = historiqueJson;
+      }
+      localStorage.setItem('historique', JSON.stringify(historique));
+      this.ngZone.run(() => {
+        this.router.navigate(['perceptions']);
+      });
+    } else {
+      this.storage.redirectToHome();
     }
-    console.log(historiqueJson);
-    historique.ressenti.raconte = historiqueJson;
-    localStorage.setItem('historique', JSON.stringify(historique));
-    this.ngZone.run(() => {
-      this.router.navigate(['perceptions']);
-    });
   }
 }

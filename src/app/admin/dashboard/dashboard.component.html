@@ -1,30 +1,75 @@
 <div class="container">
-  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
-    <div class="fill"></div>
-  </mat-toolbar>
-  <div class="content">
-      <div class="logo">
-      </div>
-    <mat-list color="primary">
-      <p class="header" *ngIf="user">
-        Bienvenue sur votre profile <strong>{{user.prenom}}</strong>
-      </p>
-      <p class="header" *ngIf="!user">
-        Vous êtes actuellement connecté(e) en mode <strong>anonyme</strong>
-      </p>
-      <mat-list-item>
-        <mat-list-item>
-          <p class="center">
-            <button mat-raised-button color="primary" (click)="authService.SignOut()">Déconnexion</button>
-          </p>
-        </mat-list-item>
-        <mat-list-item>
-          <p class="center">
-            <button mat-raised-button color="primary">test</button>
-          </p>
-        </mat-list-item>
-      </mat-list-item>
-    </mat-list>
+  <div class="row">
+    <div class="col center">
+      <img src="../../../assets/images/attente-haut.jpg" alt="">
+    </div>
   </div>
-
+  <div class="row">
+    <div class="col center">
+      <h1>Bienvenue sur votre profile<strong> {{prenom}} </strong></h1>
+    </div>
+  </div>
+  <div class="row" *ngIf='error !== null'>
+    <div class="col center">
+      <h1>{{error}}</h1>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-7 ">
+      <h3>Voici vos informations :</h3>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col">
+      Prénom : <strong>{{prenom}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col ">
+      Nom : <strong>{{nom}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      adresse mail : <strong>{{adresseMail}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      date de naissance : <strong>{{dateNaissance}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col ">
+      Genre : <strong>{{genre}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col ">
+      confidentialité : <span *ngIf="confidentialite"><strong>Accepte d'enregistrer votre historique dans la base de donnée</strong></span>
+                        <span *ngIf="!confidentialite"><strong>N'accepte pas d'enregistrer votre historique dans la base de donnée</strong></span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col center">
+      {{error}}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col center">
+      <button mat-raised-button color="link" (click)="onSubmitModifyProfile()">Modifier mon profil</button>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col center">
+      <button mat-raised-button color="link" (click)="onSubmitModifyPassword()">Modifier mon mot de passe</button>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col center">
+      <button mat-raised-button color="link" (click)="onSubmitModifyEmail()">Modifier mon adresse mail</button>
+    </div>
+  </div>
 </div>
+
+

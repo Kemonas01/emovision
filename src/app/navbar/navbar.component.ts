@@ -7,10 +7,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  logged = false;
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
+    this.connecter();
+  }
+
+  connecter(){
+    if (localStorage.getItem('user') !== null){
+      this.logged = true;
+    } else {
+      this.logged = false;
+    }
   }
 
 }

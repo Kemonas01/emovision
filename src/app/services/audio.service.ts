@@ -8,23 +8,23 @@ import { Howl } from 'howler';
 export class AudioService {
   track: Track[] = [
     {
-    name: 'test',
+    name: 'Ancrage dans la présence',
     path: '../../assets/tracks/presence.mp3'
     },
     {
-      name: 'test',
+      name: 'Sensation corporelle de la situation forte',
       path: '../../assets/tracks/initial.mp3'
     },
     {
-      name: 'test',
+      name: 'Retour au présent',
       path: '../../assets/tracks/retourPresence.mp3'
     },
     {
-      name: 'test',
+      name: 'Retour à la situation, nouvelle sensation',
       path: '../../assets/tracks/1.mp3'
     },
     {
-      name: 'test',
+      name: 'Retour au présent',
       path: '../../assets/tracks/2.mp3'
     },
 ];

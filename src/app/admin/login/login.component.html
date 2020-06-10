@@ -1,45 +1,58 @@
 <div class="container">
-  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
-    <div class="fill"></div>
-  </mat-toolbar>
-  <div class="content">
-      <div class="logo">
-      </div>
-    <mat-list color="primary">
-      <p class="header">
-        Connexion
-      </p>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Adresse mail</mat-label>
-            <input matInput placeholder="Prénom" #mail required>
-            <mat-icon matSuffix>mail_outline</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" #mdp required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <button mat-raised-button color="primary" (click)="authService.SignIn(mail.value, mdp.value)">Connexion</button>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <button mat-raised-button color="primary" (click)="authService.AnonymousAuth()">Anonyme</button>
-        </p>
-      </mat-list-item>
-
-    </mat-list>
+  <div class="row">
+    <div class="col center">
+      <img src="../../../assets/images/attente-haut.jpg" alt="">
+    </div>
   </div>
+  <div class="row">
+    <div class="col center">
+      <h1>Connexion</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col center">
+      {{error}}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col center ">
+      <mat-form-field appearance="legacy">
+        <mat-label>Adresse mail</mat-label>
+        <input matInput placeholder="Prénom" #mail required>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col center">
+      <mat-form-field appearance="legacy">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" #mdp required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-2 mb-1">
+    <div class="col center">
+      Mot de passe oublié ?  <strong routerLink="/forgot-password">Cliquez ici !</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col center">
+      Pas encore de compte ?  <strong routerLink="/register">Cliquez ici !</strong>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3 ">
+    </div>
+    <div class="col-3 center">
+      <button mat-raised-button color="primary" (click)="authService.SignIn(mail.value, mdp.value)">Connexion</button>
 
+    </div>
+    <div class="col-3 center">
+      <button mat-raised-button color="primary" (click)="authService.AnonymousAuth()">Anonyme</button>
+
+    </div>
+  </div>
 </div>

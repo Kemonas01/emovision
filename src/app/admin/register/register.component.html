@@ -1,102 +1,118 @@
 <div class="container">
-  <mat-toolbar class="main-toolbar md-tall fill" style="min-height: 30px !important; height: 170px; margin-top: -60px;" color="primary">
-    <div class="fill"></div>
-  </mat-toolbar>
-  <div class="content">
-      <div class="logo">
-      </div>
-    <mat-list color="primary">
-      <p class="header">
-        Inscription
-      </p>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Prénom</mat-label>
-            <input matInput placeholder="Prénom" #prenom required>
-            <mat-icon matSuffix>face</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="Nom" #nom required>
-            <mat-icon matSuffix>face</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <mat-label>Date de naissance</mat-label>
-            <input matInput [matDatepicker]="picker" #dateNais required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field>
-            <mat-label>Genre</mat-label>
-            <mat-select #genre required>
-              <mat-option *ngFor="let genre of genres" [value]="genre.value" >
-                {{genre.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-icon matSuffix>accessibility</mat-icon>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field class="example-full-width" appearance="legacy">
-            <mat-label>Email</mat-label>
-            <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                   placeholder="Ex: pat@example.com" #mail required>
-            <mat-icon matSuffix>mail_outline</mat-icon>
-            <mat-hint></mat-hint>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Veuillez entrer une adresse mail valide
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              l'adresse mail est <strong>requise</strong>
-            </mat-error>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <mat-form-field appearance="legacy">
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" #mdp required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field>
-        </p>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <br>
-      <mat-list-item>
-        <p class="center">
-          <mat-checkbox labelPosition="before" [(ngModel)]="confidentialite">En cochant cette case vous acceptez de <br>partager vos données </mat-checkbox>
-        </p>
-      </mat-list-item>
-      <br>
-      <mat-list-item>
-        <p class="center">
-          <mat-checkbox labelPosition="before" required>J'ai lu et j'accepte les <br>conditions générales d'utilisations *</mat-checkbox>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <p class="center">
-          <button mat-raised-button color="primary" (click)="authService.SignUp(mail.value, mdp.value, prenom.value, nom.value, dateNais.value, genre.value, confidentialite)">S'enregistrer</button>
-        </p>
-      </mat-list-item>
-
-    </mat-list>
+  <div class="row">
+    <div class="col center">
+      <img src="../../../assets/images/attente-haut.jpg" alt="">
+    </div>
   </div>
-
+  <div class="row">
+    <div class="col center">
+      <h1>Inscription</h1>
+    </div>
+  </div>
+    <div class="row mt-1">
+      <div class="col center ">
+        <mat-form-field appearance="legacy">
+          <mat-label>Prénom</mat-label>
+          <input matInput placeholder="Prénom" #prenom [formControl]="prenomFormControl" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="prenomFormControl.hasError('required')">
+            Votre prénom est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-form-field appearance="legacy">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Nom" #nom [formControl]="nomFormControl" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="nomFormControl.hasError('required')">
+            Votre nom est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-form-field appearance="legacy">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [matDatepicker]="picker" #dateNais [formControl]="dateFormControl" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dateFormControl.hasError('required')">
+            Votre date de naissance est <strong>requise</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-form-field>
+          <mat-label>Genre</mat-label>
+          <mat-select #genre [formControl]="genreFormControl" required>
+            <mat-option *ngFor="let genre of genres" [value]="genre.value" >
+              {{genre.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>accessibility</mat-icon>
+          <mat-error *ngIf="genreFormControl.hasError('required')">
+            Votre genre est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                placeholder="Ex: pat@example.com" #mail required>
+          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-hint></mat-hint>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Veuillez entrer une adresse mail valide
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            l'adresse mail est <strong>requise</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" #mdp [formControl]="passwordFormControl" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+            Veuillez entrer un mot de passe supérieur un 6 caractère
+          </mat-error>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Le mot de passe est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+          <mat-checkbox labelPosition="before" [(ngModel)]="confidentialite">En cochant cette case vous acceptez de <br>partager vos données </mat-checkbox>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col center">
+        <mat-checkbox labelPosition="before" [(ngModel)]='condition' required>J'ai lu et j'accepte les <br>conditions générales d'utilisations *</mat-checkbox>
+      </div>
+    </div>
+    <div class="row mb-2" *ngIf="error">
+      <div class="col center">
+        <strong>{{error}}</strong>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col center ">
+      <button mat-raised-button color="primary" (click)="onSubmitUtilisateurForm(mail.value, mdp.value, prenom.value, nom.value, dateNais.value, genre.value, confidentialite)" [disabled]='confidentialite'>S'enregistrer</button>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,9 @@
 <div class="container pt-5">
+  <div class="row mt-3" *ngIf="storage.load !== null">
+    <div class="col center">
+      <strong>{{storage.load}}</strong>
+    </div>
+  </div>
   <main>
     <ol class="gradient-list">
       <li *ngFor="let emotion of emotions; let i = index" [routerLink]="['/emotions', i]">

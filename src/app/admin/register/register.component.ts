@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NgForm, FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective } from '@angular/forms';
 import { Utilisateur } from './../../interfaces/utilisateur';
@@ -10,6 +10,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
 interface Genre {
   value: string;
   viewValue: string;
@@ -25,13 +26,36 @@ export class RegisterComponent implements OnInit {
   utilisateurForm: FormGroup;
   utilisateurs: Utilisateur[] = [];
   confidentialite = false;
-
+  condition = false;
+  error = null;
   constructor(public authService: AuthService,
               private formBuilder: FormBuilder) { }
   hide = true;
-   emailFormControl = new FormControl('', [
+
+  emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+
+  prenomFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  nomFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  dateFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  genreFormControl = new FormControl('', [
+    Validators.required,
   ]);
 
   matcher = new MyErrorStateMatcher();
@@ -43,22 +67,24 @@ export class RegisterComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.initUtilisateursForm();
   }
 
-  initUtilisateursForm(){
-    this.utilisateurForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      genre: ['', Validators.required],
-      confidentialite: [false],
-    });
-  }
-
-  onSubmitUtilisateurForm(){
-    const newUtilisateur: Utilisateur = this.utilisateurForm.value;
-    // tslint:disable-next-line:max-line-length
-    newUtilisateur.confidentialite = this.utilisateurForm.get('confidentialite').value ? this.utilisateurForm.get('confidentialite').value : false;
-    this.authService.createUtilisateur(newUtilisateur);
+  onSubmitUtilisateurForm(mail, mdp, prenom, nom, dateNais, genre, confidentialite){
+    if (this.genreFormControl.valid
+        && this.nomFormControl.valid
+        && this.dateFormControl.valid
+        && this.prenomFormControl.valid
+        && this.passwordFormControl.valid
+        && this.emailFormControl.valid
+        && this.condition === true
+        ){
+      this.authService.SignUp(mail, mdp, prenom, nom, dateNais, genre, confidentialite);
+    } else {
+      if (this.condition === false){
+        this.error = 'Vous devez accepter les conditions d\'utilisations';
+      } else {
+        this.error = 'Vous devez renseigner tous les champs requis';
+      }
+    }
   }
 }

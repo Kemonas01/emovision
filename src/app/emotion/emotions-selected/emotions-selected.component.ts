@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { EmotionService } from 'src/app/services/emotion.service';
 import { Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-emotions-selected',
@@ -21,7 +22,8 @@ export class EmotionsSelectedComponent implements OnInit {
   lastUrl = '';
   constructor(public emotionService: EmotionService,
               public ngZone: NgZone,
-              public router: Router) {
+              public router: Router,
+              public storage: StorageService) {
                 this.router.events
                 .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
                 .subscribe((events: RoutesRecognized[]) => {
@@ -47,15 +49,19 @@ export class EmotionsSelectedComponent implements OnInit {
   }
 
   onClick(emotion, index){
-    // tslint:disable-next-line:forin
-    for (const i in this.emotionSelected){
-      this.emotionSelected[i].checked = false;
+    if (this.storage.testHistorique()){
+      // tslint:disable-next-line:forin
+      for (const i in this.emotionSelected){
+        this.emotionSelected[i].checked = false;
+      }
+      this.emotionSelected[index].checked = true;
+      this.checked = true;
+      const historique = JSON.parse(localStorage.getItem('historique'));
+      historique.emotionRessentie.emotion = emotion;
+      localStorage.setItem('historique', JSON.stringify(historique));
+    } else {
+      this.storage.redirectToHome();
     }
-    this.emotionSelected[index].checked = true;
-    this.checked = true;
-    const historique = JSON.parse(localStorage.getItem('historique'));
-    historique.emotionRessentie.emotion = emotion;
-    localStorage.setItem('historique', JSON.stringify(historique));
   }
 
   onSubmit(){

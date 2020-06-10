@@ -45,7 +45,7 @@ export class AuthService {
       .then((result) => {
         this.userId = result.user.uid;
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['home/0']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -89,7 +89,7 @@ export class AuthService {
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
-      window.alert('Password reset email sent, check your inbox.');
+      window.alert('Vous avez reçu un mail');
     }).catch((error) => {
       window.alert(error);
     });
@@ -141,30 +141,32 @@ export class AuthService {
   }
 
   // Sign out
-  SignOut() {
+  SignOut(message) {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('historique');
-      this.router.navigate(['login']);
+      localStorage.removeItem('utilisateur');
+      this.router.navigate(['login', {error: message}]);
     });
   }
 
   // Get all list of user and return the current user data
   getUserList(){
-    const test = JSON.parse(localStorage.getItem('user')).uid;
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('/utilisateurs/' + test).once('value').then(
-          (data) => {
-            resolve(data.val());
-          }
-        ).catch(
-          (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
+      const test = JSON.parse(localStorage.getItem('user')).uid;
+      return new Promise(
+        (resolve, reject) => {
+          firebase.database().ref('/utilisateurs/' + test).once('value').then(
+            (data) => {
+              resolve(data.val());
+            }
+          ).catch(
+            (error) => {
+              reject(error);
+              location.reload();
+            }
+          );
+        }
+      );
   }
 
   // Create user Information on database
