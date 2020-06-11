@@ -18,7 +18,7 @@ export class RessentirComponent implements OnInit {
     const ressentie = {
       dejaRessenti: false,
     };
-    historique.dejaRessenti = ressentie;
+    historique.ressentie = ressentie;
     localStorage.setItem('historique', JSON.stringify(historique));
     this.ngZone.run(() => {
       this.router.navigate(['perceptions']);

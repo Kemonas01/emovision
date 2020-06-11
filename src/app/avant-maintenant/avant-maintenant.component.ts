@@ -26,7 +26,7 @@ export class AvantMaintenantComponent implements OnInit {
   ngOnInit(): void {
     const historique = JSON.parse(localStorage.getItem('historique'));
     this.degreAvant = historique.degreAvant;
-    this.degreApres = historique.degreAprès;
+    this.degreApres = historique.degreApres;
   }
 
   onSubmit(){
@@ -35,9 +35,12 @@ export class AvantMaintenantComponent implements OnInit {
         const historique = JSON.parse(localStorage.getItem('historique'));
         this.store.createHistorique(historique);
         localStorage.removeItem('historique');
+        this.ngZone.run(() => {
+          this.router.navigate(['dashboard', {error: 'Votre historique a bien été enregistré'}]);
+        });
       } else {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard', {error: 'Si vous voulez que vos informations soient enregistréer, cocher la cas \'confidentialité\''}]);
+          this.router.navigate(['dashboard', {error: 'Si vous voulez que vos informations soient enregistrées, cocher la case \'confidentialité\''}]);
         });
       }
     } else {

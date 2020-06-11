@@ -34,15 +34,19 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserList(){
+    if (localStorage.getItem('utilisateur') === null){
       this.authService.getUserList().then(
         (user) => {
           localStorage.setItem('utilisateur', JSON.stringify(user));
+          location.reload();
         }
       ).catch(
         (error) => {
-          console.error(error);
+          this.error = 'Une erreur est servenue lors du chargement de votre profil';
         }
       );
+    } else {
+      console.log('test');
       const utilisateur = JSON.parse(localStorage.getItem('utilisateur'));
       this.nom = utilisateur.nom;
       this.prenom = utilisateur.prenom;
@@ -51,6 +55,7 @@ export class DashboardComponent implements OnInit {
       this.genre = utilisateur.genre;
       const userE = JSON.parse(localStorage.getItem('user'));
       this.adresseMail = userE.email;
+    }
   }
 
   onSubmitModifyEmail(){

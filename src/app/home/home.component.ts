@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   onSubmitSecound(){
     if (this.storage.testHistorique()){
       const historique = JSON.parse(localStorage.getItem('historique'));
-      historique.degreAprès = this.value;
+      historique.degreApres = this.value;
       localStorage.setItem('historique', JSON.stringify(historique));
       this.ngZone.run(() => {
         this.router.navigate(['avant-maintenant']);

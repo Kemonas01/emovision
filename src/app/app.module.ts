@@ -33,6 +33,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ModifyEmailComponent } from './admin/dashboard/modify-email/modify-email.component';
 import { ModifyPasswordComponent } from './admin/dashboard/modify-password/modify-password.component';
 import { ModifyProfileComponent } from './admin/dashboard/modify-profile/modify-profile.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -86,6 +88,7 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     MaterialModule,
     TooltipModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [AuthService,
               { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
