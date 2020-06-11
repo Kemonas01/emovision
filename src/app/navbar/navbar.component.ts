@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   }
 
   connecter(){
-    if (localStorage.getItem('user') !== null){
+    if (JSON.parse(localStorage.getItem('user')) !== null){
       this.logged = true;
     } else {
       this.logged = false;

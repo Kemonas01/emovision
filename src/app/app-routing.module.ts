@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'avant-maintenant', component: AvantMaintenantComponent, canActivate: [AuthGuard]},
   { path: 'modify-email', component: ModifyEmailComponent, canActivate: [AuthGuard]},
   { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },
   { path: 'forgot-password', component:  ForgotPasswordComponent },

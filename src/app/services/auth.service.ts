@@ -17,6 +17,7 @@ export class AuthService {
   userData: any; // Save logged in user data
   userId: string;
   utilisateurs: any = null;
+  error: string;
 
 
   constructor(
@@ -45,8 +46,9 @@ export class AuthService {
       .then((result) => {
         this.userId = result.user.uid;
         this.SetUserData(result.user);
-        this.router.navigate(['home/0']);
+        this.router.navigate(['dashboard']);
       }).catch((error) => {
+        this.error = 'Votre mot de passe ou votre adresse mail ne sont pas valides';
       });
   }
 

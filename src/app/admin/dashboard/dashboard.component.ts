@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+import { Utilisateur } from './../../interfaces/utilisateur';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 
 
@@ -13,12 +15,12 @@ import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  nom: '';
-  prenom: '';
-  dateNaissance: '';
-  confidentialite: '';
-  adresseMail: '';
-  genre = '';
+  nom: string;
+  prenom: string;
+  dateNaissance: string;
+  confidentialite: boolean;
+  adresseMail: string;
+  genre: string;
   error = null;
   constructor(public authService: AuthService,
               public storage: StorageService,
@@ -36,9 +38,16 @@ export class DashboardComponent implements OnInit {
   getUserList(){
     if (localStorage.getItem('utilisateur') === null){
       this.authService.getUserList().then(
-        (user) => {
+        (user: Utilisateur) => {
           localStorage.setItem('utilisateur', JSON.stringify(user));
-          location.reload();
+          this.nom = user.nom;
+          this.prenom = user.prenom;
+          this.confidentialite = user.confidentialite;
+          this.dateNaissance = user.dateNaissance;
+          this.genre = user.genre;
+          const userE = JSON.parse(localStorage.getItem('user'));
+          this.adresseMail = userE.email;
+          console.log(user);
         }
       ).catch(
         (error) => {

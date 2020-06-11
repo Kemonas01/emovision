@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="col center">
-      {{error}}
+      {{error}}{{authService.error}}
     </div>
   </div>
   <div class="row mt-2">
@@ -44,14 +44,8 @@
     </div>
   </div>
   <div class="row mt-2">
-    <div class="col-3 ">
-    </div>
-    <div class="col-3 center">
+    <div class="col center">
       <button mat-raised-button color="primary" (click)="authService.SignIn(mail.value, mdp.value)">Connexion</button>
-
-    </div>
-    <div class="col-3 center">
-      <button mat-raised-button color="primary" (click)="authService.AnonymousAuth()">Anonyme</button>
 
     </div>
   </div>

@@ -1,7 +1,7 @@
 export interface Utilisateur {
     nom: string;
     prenom: string;
-    dateNaissance: Date;
+    dateNaissance: string;
     genre: string;
     confidentialite: boolean;
 }
