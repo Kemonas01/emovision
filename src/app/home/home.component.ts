@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params);
       this.state = params.state;
       this.error = params.error;
     });
@@ -39,7 +38,6 @@ export class HomeComponent implements OnInit {
       }
     ).catch(
       (error) => {
-        console.error(error);
       }
     );
 

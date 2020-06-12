@@ -19,7 +19,6 @@ import { MaterialModule } from './material.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PerceptionsComponent } from './perceptions/perceptions.component';
 import { TellComponent } from './tell/tell.component';
-import { AudioComponent } from './audio/audio.component';
 import { BodyComponent } from './body/body.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { FamillesComponent } from './familles/familles.component';
@@ -64,7 +63,6 @@ const firebaseConfig = {
     DashboardComponent,
     PerceptionsComponent,
     TellComponent,
-    AudioComponent,
     BodyComponent,
     FamillesComponent,
     EmotionsSelectedComponent,
@@ -92,6 +90,8 @@ const firebaseConfig = {
   ],
   providers: [AuthService,
               { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

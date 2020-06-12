@@ -10,6 +10,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./emotions-selected.component.scss']
 })
 export class EmotionsSelectedComponent implements OnInit {
+  /**
+   * Si l'historique est supprimé par l'utilisateur ou autre permet de l'en informer.
+   */
   emotionSelected = [
     {
     emotion: 'Un problème est survenu, veuillez retourner à la page précédente',
@@ -17,8 +20,17 @@ export class EmotionsSelectedComponent implements OnInit {
     error: true
     },
   ];
+  /**
+   * boolean pour savoir si une émotions est sélectionnée ou non
+   */
   checked = false;
+  /**
+   * L'erreur
+   */
   error = false;
+  /**
+   * Le dernier URL
+   */
   lastUrl = '';
   constructor(public emotionService: EmotionService,
               public ngZone: NgZone,
@@ -37,7 +49,9 @@ export class EmotionsSelectedComponent implements OnInit {
   ngOnInit(): void {
     this.getAllEmotionSelected();
   }
-
+  /**
+   * Récupère via le service storage les emotions sélectionner dans 'emotions'
+   */
   getAllEmotionSelected(){
     this.emotionService.getData().subscribe((data) => {
       if (data !== null){
@@ -47,7 +61,12 @@ export class EmotionsSelectedComponent implements OnInit {
       }
     });
   }
-
+  /**
+   * Lors d'un click de l'émotion change checked a true si il n'était pas sélectionner et change tous les autres à false
+   * Puis rajoute dans l'historique la valeur sélectionnée
+   * @param emotion L'émotion choisie
+   * @param index L'index de l'émotions
+   */
   onClick(emotion, index){
     if (this.storage.testHistorique()){
       // tslint:disable-next-line:forin
@@ -63,10 +82,15 @@ export class EmotionsSelectedComponent implements OnInit {
       this.storage.redirectToHome();
     }
   }
-
+  /**
+   * Redirige sur emotion echelle
+   */
   onSubmit(){
       this.router.navigate(['emotions-echelle']);
   }
+  /**
+   * Si il y a une erreur, récupère le dernier url et le redirige dessus
+   */
   onSubmitError(){
     this.lastUrl = sessionStorage.getItem('lasturl');
     this.router.navigate([this.lastUrl]);

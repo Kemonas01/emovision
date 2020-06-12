@@ -8,7 +8,13 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./emotion-echelle.component.css']
 })
 export class EmotionEchelleComponent implements OnInit {
+  /**
+   * l'emotion séléctionner dans emotions-selected
+   */
   emotionSelected = null;
+  /**
+   * Valeur du slider
+   */
   value: any = 0;
   formatLabel(value: number) {
     if (value >= 1000) {
@@ -24,11 +30,16 @@ export class EmotionEchelleComponent implements OnInit {
   ngOnInit(): void {
     this.getEmotionSelected();
   }
-
+  /**
+   * Permet d'initialiser la valeur lors d'un changement du slider
+   * @param event changement du slider
+   */
   onSliderChangeEnd(event){
     this.value = event.value;
   }
-
+  /**
+   * Récupère si il y a un historique l'emotion séléctionnée
+   */
   getEmotionSelected(){
     if (this.storage.testHistorique()){
       const historique = JSON.parse(localStorage.getItem('historique'));
@@ -37,7 +48,9 @@ export class EmotionEchelleComponent implements OnInit {
       this.storage.redirectToHome();
     }
   }
-
+  /**
+   * Enregistre dans le storage la valeur 'echelle' dans le storage et redirige sur perceptions
+   */
   onSubmit(){
     if (this.storage.testHistorique()){
       const historique = JSON.parse(localStorage.getItem('historique'));

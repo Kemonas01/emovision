@@ -15,26 +15,51 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  /**
+   * Le nom
+   */
   nom: string;
+  /**
+   * Le prenom
+   */
   prenom: string;
+  /**
+   * La date de naissance
+   */
   dateNaissance: string;
+  /**
+   * La confidentialité
+   */
   confidentialite: boolean;
+  /**
+   * L'adresse mail
+   */
   adresseMail: string;
+  /**
+   * Le genre
+   */
   genre: string;
+  /**
+   * Les erreurs en string
+   */
   error = null;
   constructor(public authService: AuthService,
               public storage: StorageService,
               private route: ActivatedRoute,
               private router: Router) {
    }
-
+   /**
+    * Lors du lancement de la page: récupère l'erreur si il y en une et lance la fonction getUserList
+    */
   ngOnInit(): void {
     this.getUserList();
     this.route.params.subscribe(params => {
       this.error = params.error;
     });
   }
-
+  /**
+   * initialise toute les variables de l'utilisateurs et les stocks dans le localStorage
+   */
   getUserList(){
     if (localStorage.getItem('utilisateur') === null){
       this.authService.getUserList().then(
@@ -66,14 +91,21 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  /**
+   * Redirige sur modify-email lors de la soumissions du bouton
+   */
   onSubmitModifyEmail(){
     this.router.navigate(['modify-email']);
   }
-
+  /**
+   * Redirige sur modify-password lors de la soumissions du bouton
+   */
   onSubmitModifyPassword(){
     this.router.navigate(['modify-password']);
   }
-
+  /**
+   * Redirige sur modify-profile lors de la soumissions du bouton
+   */
   onSubmitModifyProfile(){
     this.router.navigate(['modify-profile']);
   }

@@ -9,15 +9,26 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
-  isHover = false;
+  /**
+   * La zone séléctionner sur le SVG
+   */
   selected = '';
+  /**
+   * Si le bouton est cliquer ou non pour dos ou face
+   */
   divSvgDos = false;
+  /**
+   * L'input de l'utilisateur
+   */
   sensation = '';
   constructor(public ngZone: NgZone,
               public router: Router,
               public storage: StorageService
               ) { }
 
+  /**
+   * Initialise les variable sensation et selected si il y a un localStorage
+   */
   ngOnInit(): void {
     if (this.storage.testHistorique()){
       const historique = JSON.parse(localStorage.getItem('historique'));
@@ -27,7 +38,9 @@ export class BodyComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * Initialise selected lors d'un click sur le SVG
+   */
   onClick(value){
     this.selected = value;
   }
@@ -47,7 +60,9 @@ export class BodyComponent implements OnInit {
       this.storage.redirectToHome();
     }
   }
-
+  /**
+   * Lors de la soumission du bouton dos/face: permet de modifier la valeur de divSvgDos en fonction du click
+   */
   onSubmitDF(){
     this.divSvgDos = this.divSvgDos ? false : true;
   }

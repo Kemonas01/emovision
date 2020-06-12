@@ -46,7 +46,7 @@ export class AuthService {
       .then((result) => {
         this.userId = result.user.uid;
         this.SetUserData(result.user);
-        this.router.navigate(['home/0']).then(() => {
+        this.router.navigate(['dashboard']).then(() => {
           location.reload();
         });
       }).catch((error) => {
@@ -77,7 +77,6 @@ export class AuthService {
     return firebase.auth().signInAnonymously()
     .then((result) => {
       this.userId = result.user.uid;
-      console.log(this.userId);
     });
   }
 

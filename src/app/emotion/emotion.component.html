@@ -3,8 +3,8 @@
         <div class="col-1">
         </div>
         <div class="col-10 center">
-            <div class=" center" id="checklist" *ngFor="let test of emotions; let i = index">
-                <input id={{i}} type="checkbox" name="r" value={{i}} (click)="onClick(test)">
+            <div class=" center" id="checklist" *ngFor="let test of emotions; let i = index" (click)="onClick(test, i)">
+                <input id={{i}} type="checkbox" name="r" value={{i}} [checked]="checked[i]" disabled>
                 <label for={{i}}>{{test}}</label>
             </div>
         </div>

@@ -12,7 +12,6 @@ import { SecureInnerPagesGuard } from './services/secure-inner-pages.guard';
 import { HomeComponent } from './home/home.component';
 import { PerceptionsComponent } from './perceptions/perceptions.component';
 import { TellComponent } from './tell/tell.component';
-import { AudioComponent } from './audio/audio.component';
 import { BodyComponent } from './body/body.component';
 import { FamillesComponent } from './familles/familles.component';
 import { EmotionsSelectedComponent } from './emotion/emotions-selected/emotions-selected.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'perceptions', component: PerceptionsComponent, canActivate: [AuthGuard]},
   { path: 'tell', component: TellComponent, canActivate: [AuthGuard]},
-  { path: 'audio', component: AudioComponent, canActivate: [AuthGuard]},
   { path: 'body', component: BodyComponent, canActivate: [AuthGuard]},
   { path: 'emotions/:i', component: EmotionComponent, canActivate: [AuthGuard]},
   { path: 'familles', component: FamillesComponent, canActivate: [AuthGuard]},
@@ -42,7 +40,7 @@ const routes: Routes = [
   { path: 'avant-maintenant', component: AvantMaintenantComponent, canActivate: [AuthGuard]},
   { path: 'modify-email', component: ModifyEmailComponent, canActivate: [AuthGuard]},
   { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component:  LoginComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register', component:  RegisterComponent },
   { path: 'forgot-password', component:  ForgotPasswordComponent },

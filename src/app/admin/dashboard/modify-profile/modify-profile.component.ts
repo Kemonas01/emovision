@@ -12,6 +12,9 @@ interface Genre {
   styleUrls: ['./modify-profile.component.css']
 })
 export class ModifyProfileComponent implements OnInit {
+  /**
+   * Les options des genres
+   */
   genres: Genre[] = [
     {value: 'H', viewValue: 'Homme'},
     {value: 'F', viewValue: 'Femme'},
@@ -24,7 +27,12 @@ export class ModifyProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /**
+   * Lors de la soumission, permet de modifier les informations de l'utilisateur dans la base de donnée et le déconnecte
+   * @param pre le prénom
+   * @param nm le nom
+   * @param gen le genre
+   */
   onSubmit(pre, nm, gen){
     const utilisateur = {
       prenom: pre,

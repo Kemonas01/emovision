@@ -1,19 +1,42 @@
 
   
   <!-- Full Page Image Header with Vertically Centered Content -->
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12 text-center">
-          <h2 class="font-weight-light">Bienvenue sur </h2>
-          <h1 class="font-weight-light">Emovision</h1>
+    <header class="masthead ">
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-12 text-center">
+            <h2 class="font-weight-light">Bienvenue sur </h2>
+            <h1 class="font-weight-light">Emovision</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 center">
+           <span class="mt-auto"><mat-icon matSuffix>contacts</mat-icon>Contact :</span> 
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-8 center">
+          <button type="button" class="btn btn-info" disabled>Odyle Pérot & Eric Bittar</button>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-2"></div>
+        <div class="col-8 center">
+          <button type="button" class="btn btn-info" disabled>Au coeur de la Présence</button>
+        </div>
+      </div>
+      <div class="row mt-3 mb-2">
+        <div class="col-2"></div>
+        <div class="col-8 center">
+          <button mat-raised-button color="primary" [routerLink]="['login']">Commencer</button>
         </div>
       </div>
     </div>
-  </header>
+        
   
-  <!-- Page Content -->
-  <section class="py-5">
-    <div class="container">
-    </div>
-  </section>

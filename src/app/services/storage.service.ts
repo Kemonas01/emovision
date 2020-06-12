@@ -16,6 +16,10 @@ export class StorageService {
       const arr = [];
       // tslint:disable-next-line:forin
       for (const value in object) {
+        // tslint:disable-next-line:forin
+        for (const i in object[value].emotions){
+          object[value].emotions[i].checked = false;
+        }
         arr.push(object[value]);
       }
       localStorage.setItem('familles', JSON.stringify(arr));

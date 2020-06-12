@@ -56,7 +56,6 @@ export class RessentirAvantComponent implements OnInit {
         };
         historiqueJson.push(json);
       }
-      console.log(historiqueJson);
       if (historique.ressenti === undefined){
         historique.ressenti = {
           dejaRessenti: true,

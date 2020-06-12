@@ -8,12 +8,21 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./tell.component.css']
 })
 export class TellComponent implements OnInit {
+  /**
+   * Valeur de l'input
+   */
   valueText = '';
+  /**
+   * Valeur de la modification
+   */
   modification = false;
   constructor(public ngZone: NgZone,
               public router: Router,
               public storage: StorageService) { }
 
+  /**
+   * Change modification en fonction de si il y a ou non une valeur dans temoignage dans le storage
+   */
   ngOnInit(): void {
     if (this.storage.testHistorique()){
       this.valueText = JSON.parse(localStorage.getItem('historique')).temoignage;
@@ -26,7 +35,10 @@ export class TellComponent implements OnInit {
       });
     }
   }
-
+  /**
+   * Ajoute au localStorage la valeur de l'input est reload la page
+   * @param text valeur de l'input
+   */
   onSubmit(text){
     if (this.storage.testHistorique()){
       const historique = JSON.parse(localStorage.getItem('historique'));
@@ -39,7 +51,9 @@ export class TellComponent implements OnInit {
       });
     }
   }
-
+  /**
+   * Redirige sur perceptions
+   */
   onSubmitNext(){
     this.ngZone.run(() => {
       this.router.navigate(['perceptions']);

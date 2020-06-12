@@ -9,15 +9,33 @@ import { EmotionService } from '../services/emotion.service';
   styleUrls: ['./emotion.component.scss']
 })
 export class EmotionComponent implements OnInit {
+  /**
+   * Liste des émotions
+   */
   emotions = [];
+  /**
+   * Liste des émotions
+   */
+  checked = [];
+  /**
+   * Liste des émotions sélectionnées
+   */
   emotionsSelected = [];
+  /**
+   * emotions ajoutées
+   */
   emotionsAdd = [];
+  /**
+   * la famille
+   */
   title = '';
   sizeEmotions = 0;
   index = null;
   indexS = null;
+  /**
+   * la valeur par défault de l'input
+   */
   defaultValue = '';
-
   constructor(public storage: StorageService,
               private route: ActivatedRoute,
               public emotionService: EmotionService,
@@ -27,7 +45,10 @@ export class EmotionComponent implements OnInit {
   ngOnInit() {
     this.getEmotions();
   }
-
+  /**
+   * Permet de récupérer les familles (avec les émotions) du localStorage, si il y en a pas ->
+   * retourne sur la famille pour recréer le local storage
+   */
   getEmotions(){
     if (localStorage.getItem('familles') !== null){
       this.route.params.subscribe(params => {
@@ -38,6 +59,7 @@ export class EmotionComponent implements OnInit {
         // tslint:disable-next-line:forin
       for (const value in data) {
         this.emotions.push(data[value].libelle);
+        this.checked.push(data[value].checked);
       }
       this.sizeEmotions = this.emotions.length + 1;
     } else {
@@ -46,15 +68,22 @@ export class EmotionComponent implements OnInit {
       });
     }
   }
-
-  onClick(data){
+  /**
+   * Lors d'un click de l'émotion change checked a true si il n'était pas sélectionner et l'ajoute à la liste emotionsSelected
+   * Puis rajoute dans l'historique la valeur sélectionnée
+   * @param data L'émotion choisie
+   * @param i L'index de l'émotions
+   */
+  onClick(data, i){
     const found  = this.emotionsSelected.some( ( text ) => {
       this.indexS = this.emotionsSelected.indexOf( data );
       return text.indexOf( data ) !== -1 ;
     });
     if ( !found ) {
+      this.checked[i] = true;
       this.emotionsSelected.push(data);
     } else {
+      this.checked[i] = false;
       this.emotionsSelected.splice(this.indexS, 1);
     }
     this.defaultValue = '';

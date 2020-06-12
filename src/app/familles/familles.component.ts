@@ -8,13 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./familles.component.scss']
 })
 export class FamillesComponent implements OnInit {
+  /**
+   * liste des emotions
+   */
   emotions = [];
   constructor(public storage: StorageService, public ngZone: NgZone, public router: Router) { }
 
   ngOnInit() {
     this.getAllEmotions();
   }
-
+  /**
+   * Ajoute les émotions dans le localStorage si il existe pas sinon initialise emotions
+   */
   getAllEmotions(){
     if (localStorage.getItem('familles') === null){
       this.storage.getAllEmotions();

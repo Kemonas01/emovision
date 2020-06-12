@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
   }
 
   connecter(){
-    console.log(this.auth.isLoggedIn);
     this.logged = this.auth.isLoggedIn;
   }
 
