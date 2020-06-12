@@ -46,7 +46,9 @@ export class AuthService {
       .then((result) => {
         this.userId = result.user.uid;
         this.SetUserData(result.user);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['home/0']).then(() => {
+          location.reload();
+        });
       }).catch((error) => {
         this.error = 'Votre mot de passe ou votre adresse mail ne sont pas valides';
       });
@@ -146,7 +148,9 @@ export class AuthService {
       localStorage.removeItem('user');
       localStorage.removeItem('historique');
       localStorage.removeItem('utilisateur');
-      this.router.navigate(['login', {error: message}]);
+      this.router.navigate(['login', {error: message}]).then(() => {
+        location.reload();
+      });
     });
   }
 

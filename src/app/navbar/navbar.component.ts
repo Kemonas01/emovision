@@ -8,6 +8,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   logged = false;
+  showInstallButton = false;
+  deferredPrompt = null;
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
@@ -15,11 +17,8 @@ export class NavbarComponent implements OnInit {
   }
 
   connecter(){
-    if (JSON.parse(localStorage.getItem('user')) !== null){
-      this.logged = true;
-    } else {
-      this.logged = false;
-    }
+    console.log(this.auth.isLoggedIn);
+    this.logged = this.auth.isLoggedIn;
   }
 
 }

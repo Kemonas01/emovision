@@ -4,6 +4,21 @@
         <img src="../../../assets/images/attente-haut.jpg" alt="">
       </div>
     </div>
+    <div class="row" *ngIf="error !== null">
+      <div class="col center">
+          {{error}}
+      </div>
+  </div>
+    <div class="row">
+      <div class="col center">
+          <mat-form-field appearance="legacy">
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Votre mot de passe" #password required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+      </div>
+  </div>
     <div class="row">
         <div class="col center">
             <mat-form-field class="example-full-width" appearance="legacy">
@@ -23,7 +38,7 @@
     </div>
     <div class="row mt-3">
         <div class="col center">
-            <button mat-raised-button color="link" (click)="onSubmit(mail.value)">Modifier mon adresse mail</button>
+            <button mat-raised-button color="link" (click)="onSubmit(password.value, mail.value)">Modifier mon adresse mail</button>
         </div>
     </div>
 </div>

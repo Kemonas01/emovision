@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
           this.genre = user.genre;
           const userE = JSON.parse(localStorage.getItem('user'));
           this.adresseMail = userE.email;
-          console.log(user);
+          location.reload();
         }
       ).catch(
         (error) => {
@@ -55,7 +55,6 @@ export class DashboardComponent implements OnInit {
         }
       );
     } else {
-      console.log('test');
       const utilisateur = JSON.parse(localStorage.getItem('utilisateur'));
       this.nom = utilisateur.nom;
       this.prenom = utilisateur.prenom;
